@@ -12,7 +12,39 @@ const useStyles = makeStyles({
 
 export function ChartStatus() {
     const classes = useStyles();
-
+    let dataMock = [
+        {
+            color: '#FFD700',
+            title: 'No Status',
+            value: 7
+        },
+        {
+            color: '#FF0000',
+            title: 'Confirmed Case',
+            value: 1
+        },
+        {
+            color: '#FFA500',
+            title: 'Suspected Case',
+            value: 2
+        },
+        {
+            color: '#008000',
+            title: 'Stay-Home Notice (SHN)',
+            value: 3
+        },
+        {
+            color: '#0000FF',
+            title: 'Leave of Absence (LOA)',
+            value: 3
+        },
+        {
+            color: '#800080',
+            title: 'Extra Precautionary Measure',
+            value: 2
+        }
+    ];
+    
     return(
         <div>
             <DonutChart
@@ -21,39 +53,8 @@ export function ChartStatus() {
             animationEasing="ease-out"
             cx={50}
             cy={50}
-            totalValue = {100}
-            data={[
-                {
-                    color: '#FFD700',
-                    title: 'No Status',
-                    value: 10
-                },
-                {
-                    color: '#FF0000',
-                    title: 'Confirmed Case',
-                    value: 10
-                },
-                {
-                    color: '#FFA500',
-                    title: 'Suspected Case',
-                    value: 10
-                },
-                {
-                    color: '#008000',
-                    title: 'Stay-Home Notice (SHN)',
-                    value: 10
-                },
-                {
-                    color: '#0000FF',
-                    title: 'Leave of Absence (LOA)',
-                    value: 10
-                },
-                {
-                    color: '#800080',
-                    title: 'Extra Precautionary Measure',
-                    value: 50
-                }
-            ]}
+            totalValue = { 18 }
+            data={dataMock}
             label={false}
             labelPosition={50}
             lengthAngle={360}
@@ -79,7 +80,7 @@ export function ChartStatus() {
                     <div className='legendCubesList' style={{ display: 'flex', flexDirection: 'column', margin: '1vh 1vw'}}>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#FFD700'}}></div>
+                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FFD700'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>No Status</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
@@ -87,35 +88,35 @@ export function ChartStatus() {
 
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#FF0000'}}></div>
+                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FF0000'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Confirmed Case</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
                         </div>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#FFA500'}}></div>
+                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FFA500'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Suspected Case</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
                         </div>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#008000'}}></div>
+                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#008000'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Stay-Home Notice (SHN)</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
                         </div>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#0000FF'}}></div>
+                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#0000FF'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Leave of Absence (LOA)</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
                         </div>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#800080'}}></div>
+                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#800080'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Extra Precautionary Measure</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
