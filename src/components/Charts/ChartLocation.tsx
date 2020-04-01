@@ -52,14 +52,14 @@ export function ChartLocation() {
                     <div className='legendCubesList' style={{ display: 'flex', flexDirection: 'column', margin: '1vh 1vw'}}>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FFD700'}}></div>
+                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#FFD700'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Work from home</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
                         </div>
                         <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                             <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FF0000'}}></div>
+                                 <div className='cube' style={{ height: '1.93vh', width: '0.938vw', marginRight: '1vw', background: '#FF0000'}}></div>
                                 <div className='cubeName' style={{ fontSize: '12px'}}>Clientside</div>
                             </div>
                             <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
