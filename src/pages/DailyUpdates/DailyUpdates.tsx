@@ -9,20 +9,21 @@ import Button from '@material-ui/core/Button';
 import { DailyUpdatesTable } from '../../components/DailyUpdatesTable/DailyUpdatesTable';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
+import { useActions } from '../../actions/';
+import * as DailyUpdatesActions from '../../actions/DailyUpdates';
 
-export interface DailyUpdatesProps {}
+export interface DailyUpdatesProps { }
 
 export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   const classes = useStyles();
   // const registrationActions = useActions(RegistrationActions);
+  const registrationData = useSelector(
+    (state: RootState) => state.registrationData
+  );
+
+  const dailyUpdatesActions = useActions(DailyUpdatesActions);
 
   // initial states for the text fields
-  const [EmployeeId, setEmployeeId] = useState<string>('');
-  const [AssociateName, setAssociateName] = useState<string>('');
-  const [MISDepartment, setMISDepartment] = useState<string>('');
-  const [AccountName, setAccountName] = useState<string>('');
-  const [ManagerName, setManagerName] = useState<string>('');
-  const [Role, setRole] = useState<string>('');
   const [currentTravelStatus, setCurrentTravelStatus] = useState<string>('');
   const [Country, setCountry] = useState<string>('Singapore');
   const [PersonalStatus, setPersonalStatus] = useState<string>('');
@@ -30,20 +31,6 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   const [WorkFromHome, setWorkFromHome] = useState<string>('');
   const [PersonalLeave, setPersonalLeave] = useState<string>('');
 
-  useEffect(() => {
-    //     if (registrationData.employeeId !== undefined && registrationData.firstName !== undefined) {
-    //       setEmployeeId(registrationData.employeeId);
-    // //    setAssociateName(registrationData.firstName + " " + registrationData.lastName);
-    // //    setMISDepartment(registrationData.MISDepartment);
-    // //    setAccountName(registrationData.accountName);
-    // //    setManagerName(registrationData.managerFirstName + " " + registrationData.managerLastName);
-    // //    setRole(registrationData.role);
-    // //    setOfficeLocation(registrationData.workLocation);
-    //     }
-    // if(RegistrationData !== undefined) {
-    // console.log(RegistrationData + "daily updates");
-    // }
-  }, []);
 
   // switch cases
   const [buttonColorTravel1, setButtonColorTravel1] = useState<any>(
@@ -78,22 +65,22 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   const handleSubmit = (e: any) => {
     const payload = {
       date: new Date().toString().substr(0, 15),
-      employeeId: EmployeeId,
-      associateName: AssociateName,
-      MISDepartment: MISDepartment,
-      accountName: AccountName,
-      managerName: ManagerName,
-      role: Role,
+      employeeId: registrationData.employeeId,
+      associateName: registrationData.firstName + " " + registrationData.lastName,
+      MISDepartment: registrationData.MISDepartment,
+      accountName: registrationData.accountName,
+      managerName: registrationData.managerFirstName + " " + registrationData.managerLastName,
+      role: registrationData.role,
       currentTravelStatus: currentTravelStatus,
       country: Country,
       personalStatus: PersonalStatus,
-      officeLocation: OfficeLocation,
+      officeLocation: registrationData.workLocation,
       workFromHome: WorkFromHome,
       onPersonalLeave: PersonalLeave
     };
 
-    // console.log(payload);
-    //console.log(RegistrationData);
+    dailyUpdatesActions.submitDailyUpdatesData(payload);
+    
   };
 
   // Events
@@ -167,7 +154,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <Box display="flex" justifyContent="flex-start">
           <FormControl>
             <InputLabel className={classes.EmpIdLabel}>
@@ -178,7 +165,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               readOnly={true}
               styles={classes.EmpIdTextBox}
               onChange={''}
-              textValue={EmployeeId}
+              textValue={registrationData.employeeId}
             />
           </FormControl>
         </Box>
@@ -193,7 +180,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               readOnly={true}
               styles={classes.AssociateNameTextBox}
               onChange={''}
-              textValue={AssociateName}
+              textValue={registrationData.firstName + " " + registrationData.lastName}
             />
           </FormControl>
         </Box>
@@ -208,7 +195,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               readOnly={true}
               styles={classes.MISDepartmentTextBox}
               onChange={''}
-              textValue={MISDepartment}
+              textValue={registrationData.MISDepartment}
             />
           </FormControl>
         </Box>
@@ -223,7 +210,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               readOnly={true}
               styles={classes.AccountNameTextBox}
               onChange={''}
-              textValue={AccountName}
+              textValue={registrationData.accountName}
             />
           </FormControl>
         </Box>
@@ -238,7 +225,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               readOnly={true}
               styles={classes.ManagerNameTextBox}
               onChange={''}
-              textValue={ManagerName}
+              textValue={registrationData.managerFirstName + " " + registrationData.managerLastName}
             />
           </FormControl>
         </Box>
@@ -251,7 +238,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               readOnly={true}
               styles={classes.RoleTextBox}
               onChange={''}
-              textValue={Role}
+              textValue={registrationData.role}
             />
           </FormControl>
         </Box>
@@ -319,7 +306,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                 readOnly={false}
                 styles={classes.OfficeLocationCountryTextBox}
                 onChange={handleOfficeLocation}
-                textValue={OfficeLocation}
+                textValue={registrationData.workLocation}
               />
             </FormControl>
           </Box>
@@ -405,7 +392,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                 readOnly={false}
                 styles={classes.OfficeLocationTextBox}
                 onChange={handleOfficeLocation}
-                textValue={OfficeLocation}
+                textValue={registrationData.workLocation}
               />
             </FormControl>
           </Box>
