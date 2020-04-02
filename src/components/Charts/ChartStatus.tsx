@@ -4,42 +4,36 @@ import { Grid, Button, Box } from '@material-ui/core';
 import DonutChart  from 'react-minimal-pie-chart';
 
 
-const useStyles = makeStyles({
-    root: {
-        
-    }
-});
-
 export function ChartStatus() {
     const classes = useStyles();
     let dataMock = [
         {
-            color: '#FFD700',
+            color: '#FECD56',
             title: 'No Status',
             value: 7
         },
         {
-            color: '#FF0000',
+            color: '#FF6283',
             title: 'Confirmed Case',
             value: 1
         },
         {
-            color: '#FFA500',
+            color: '#FF9F41',
             title: 'Suspected Case',
             value: 2
         },
         {
-            color: '#008000',
+            color: '#4DBFC0',
             title: 'Stay-Home Notice (SHN)',
             value: 3
         },
         {
-            color: '#0000FF',
+            color: '#37A3EB',
             title: 'Leave of Absence (LOA)',
             value: 3
         },
         {
-            color: '#800080',
+            color: '#A54FFB',
             title: 'Extra Precautionary Measure',
             value: 2
         }
@@ -47,6 +41,7 @@ export function ChartStatus() {
     
     return(
         <div>
+            <Grid container className={classes.header} justify='center' alignItems='center'>Team Status</Grid>
             <DonutChart
             animate={false}
             animationDuration={500}
@@ -54,10 +49,15 @@ export function ChartStatus() {
             cx={50}
             cy={50}
             data={dataMock}
-            label={false}
-            labelPosition={50}
+            label
+                labelPosition={80}
+                labelStyle={{
+                fill: '#121212',
+                fontFamily: 'sans-serif',
+                fontSize: '5px'
+                }}
             lengthAngle={360}
-            lineWidth={15}
+            lineWidth={40}
             onClick={undefined}
             onMouseOut={undefined}
             onMouseOver={undefined}
@@ -70,66 +70,123 @@ export function ChartStatus() {
                 100
             ]}
             />
-
-            {/* <Grid className='chartlegend'
-                  direction='row'>
-
-            </Grid> */}
-
-                <div className='chartLegend'>
-                    <div className='legendHeaders' style={{ display: 'flex', justifyContent:'space-between'}}>
-                        <div className='dummy' style={{ height: '3vh', width: '6vw', margin:'2vh 1vw' }}></div>
-                        <div className='noOfEmployees' style={{ fontSize: '12px', margin: '2vh 1vw'}}>No. of employees</div>
-                    </div>
-                    <div className='legendCubesList' style={{ display: 'flex', flexDirection: 'column', margin: '1vh 1vw'}}>
-                        <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FFD700'}}></div>
-                                <div className='cubeName' style={{ fontSize: '12px'}}>No Status</div>
-                            </div>
-                            <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
+                <Grid container className='chartLegend' justify='space-between' alignContent='center' direction='row'>
+                    <Grid className={classes.dummy}></Grid>
+                    <Grid className={classes.noOfEmployees}>No. of Employees</Grid>
+                </Grid>
+                <Grid container className={classes.legendCubesList} direction='column'>
+                    <Grid container className='container1' direction='row' justify='space-between'>
+                        <div className={classes.container2}>
+                            <div className={classes.cubeNoStat}></div>
+                            <div className={classes.cubeReference}>{dataMock[0].title}</div>
                         </div>
-
-                        <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FF0000'}}></div>
-                                <div className='cubeName' style={{ fontSize: '12px'}}>Confirmed Case</div>
-                            </div>
-                            <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
+                        <div className={classes.countReference}>{dataMock[0].value}</div>
+                    </Grid>
+                    <Grid container className='container1' direction='row' justify='space-between'>
+                        <div className={classes.container2}>
+                            <div className={classes.cubeConfirmed}></div>
+                            <div className={classes.cubeReference}>{dataMock[1].title}</div>
                         </div>
-                        <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#FFA500'}}></div>
-                                <div className='cubeName' style={{ fontSize: '12px'}}>Suspected Case</div>
-                            </div>
-                            <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
+                        <div className={classes.countReference}>{dataMock[1].value}</div>
+                    </Grid>
+                    <Grid container className='container1' direction='row' justify='space-between'>
+                        <div className={classes.container2}>
+                            <div className={classes.cubeSuspected}></div>
+                            <div className={classes.cubeReference}>{dataMock[2].title}</div>
                         </div>
-                        <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#008000'}}></div>
-                                <div className='cubeName' style={{ fontSize: '12px'}}>Stay-Home Notice (SHN)</div>
-                            </div>
-                            <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
+                        <div className={classes.countReference}>{dataMock[2].value}</div>
+                    </Grid>
+                    <Grid container className='container1' direction='row' justify='space-between'>
+                        <div className={classes.container2}>
+                            <div className={classes.cubeSHN}></div>
+                            <div className={classes.cubeReference}>{dataMock[3].title}</div>
                         </div>
-                        <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#0000FF'}}></div>
-                                <div className='cubeName' style={{ fontSize: '12px'}}>Leave of Absence (LOA)</div>
-                            </div>
-                            <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
+                        <div className={classes.countReference}>{dataMock[3].value}</div>
+                    </Grid>
+                    <Grid container className='container1' direction='row' justify='space-between'>
+                        <div className={classes.container2}>
+                            <div className={classes.cubeLOA}></div>
+                            <div className={classes.cubeReference}>{dataMock[4].title}</div>
                         </div>
-                        <div className='container1' style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                            <div className='container2' style={{ display: 'flex', flexDirection: 'row'}}>
-                                 <div className='cube' style={{ height: '12px', width: '12px', marginRight: '1vw', background: '#800080'}}></div>
-                                <div className='cubeName' style={{ fontSize: '12px'}}>Extra Precautionary Measure</div>
-                            </div>
-                            <div style={{ fontSize: '12px', marginRight: '3vw'}}>3</div>
+                        <div className={classes.countReference}>{dataMock[4].value}</div>
+                    </Grid>
+                    <Grid container className='container1' direction='row' justify='space-between'>
+                        <div className={classes.container2}>
+                            <div className={classes.cubePrecautionary}></div>
+                            <div className={classes.cubeReference}>{dataMock[5].title}</div>
                         </div>
-                    </div>
-                </div>
+                        <div className={classes.countReference}>{dataMock[5].value}</div>
+                    </Grid>
+                </Grid>
         </div>
     );
 
-   
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+    header: {
+        font: 'Roboto',
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginBottom: '2vh'
+    },
+    dummy: {
+        height: '3vh', 
+        width: '6vw', 
+        margin:'2vh 1vw'
+    },
+    noOfEmployees: {
+        fontSize: '12px', 
+        margin: '2vh 1vw'
+    },
+    legendCubesList: {
+        margin: '1vh 1vw'
+    },
+    container2: {
+        display:'flex',
+        flexDirection:'row'
+    },
+    cubeNoStat: {
+        backgroundColor: '#FECD56',
+        height: 12,
+        width: 12,
+        marginRight: '1vw'
+      },
+    cubeConfirmed: {
+        backgroundColor: '#FF6283',
+        height: 12,
+        width: 12,
+        marginRight: '1vw'
+    },
+    cubeSuspected: {
+        backgroundColor: '#FF9F41',
+        height: 12,
+        width: 12,
+        marginRight: '1vw'
+    },
+    cubeSHN: {
+        backgroundColor: '#4DBFC0',
+        height: 12,
+        width: 12,
+        marginRight: '1vw'
+    },
+    cubeLOA: {
+        backgroundColor: '#37A3EB',
+        height: 12,
+        width: 12,
+        marginRight: '1vw'
+    },
+    cubePrecautionary: {
+        backgroundColor: '#A54FFB',
+        height: 12,
+        width: 12,
+        marginRight: '1vw'
+    },
+    cubeReference: {
+        fontSize: 12
+    },
+    countReference: {
+        fontSize: 12,
+        marginRight: '3vw'
+    }  
+  }));  
