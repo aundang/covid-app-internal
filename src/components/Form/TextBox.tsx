@@ -39,7 +39,9 @@ const TextBox: React.SFC<TextBoxProps> = ({ label, readOnly, styles, onChange, t
             }} 
             className={styles} 
             onChange = {(eve) => handleTextValue(eve.target.value)}
-            value = {value}/>
+            value = {value}
+            error={value === ""}
+            helperText={value === "" ? 'Required Field' : ' '}/>
     );
 }
 

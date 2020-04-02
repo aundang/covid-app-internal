@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel } from '@material-ui/core';
 import TextBox from '../../components/Form/TextBox';
 import SubmitButton from '../../components/Form/SubmitButton';
 import { makeStyles, StylesContext } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import DropDown from '../../components/Form/DropDown';
-
+import { useActions } from '../../actions/';
+import * as RegistrationActions from '../../actions/RegistrationForm';
+import { registrationData } from '../../model';
 
 export interface RegistrationProps {
 
 }
-
 
 export const Registration: React.SFC<RegistrationProps> = () => {
     const classes = useStyles();
@@ -26,8 +27,8 @@ export const Registration: React.SFC<RegistrationProps> = () => {
     const [Account, setAccount] = useState<string>("");
     const [Country, setCountry] = useState<string>("");
     const [WorkLocation, setWorkLocation] = useState<string>("");
-    const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(true);
-
+    const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(false);
+    const registrationActions = useActions(RegistrationActions);
     // gets the payload from the text fields 
     const handleSubmit = (e: any) => {
         const payload = {
@@ -43,8 +44,9 @@ export const Registration: React.SFC<RegistrationProps> = () => {
             country: Country,
             workLocation: WorkLocation,
         }
-
-        console.log(payload);
+      
+        registrationActions.submitData(payload);
+        //console.log(payload);
     }
 
     // sets the state values for the individual fields 
@@ -491,7 +493,7 @@ const useStyles = makeStyles({
     Button: {
         position: 'absolute',
         left: '700px',
-        top: '1100px',
+        top: '1300px',
     },
 
 });

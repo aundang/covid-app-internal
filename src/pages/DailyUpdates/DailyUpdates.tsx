@@ -6,6 +6,7 @@ import SubmitButton from '../../components/Form/SubmitButton';
 import { makeStyles, StylesContext } from '@material-ui/styles';
 import DropDown from '../../components/Form/DropDown';
 import Button from '@material-ui/core/Button';
+import { DailyUpdatesTable} from '../../components/DailyUpdatesTable/DailyUpdatesTable';
 
 export interface DailyUpdatesProps {
     
@@ -55,12 +56,28 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
     const [buttonColorWorkFromHome2, setButtonColorWorkFromHome2] = useState<any>("Transparent");
     const [buttonColorPersonalLeave1, setbuttonColorPersonalLeave1] = useState<any>("Transparent");
     const [buttonColorPersonalLeave2, setButtonColorPersonalLeave2] = useState<any>("Transparent");
-    const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(true);
+    const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(false);
 
 
     // when form submitted, capture the payload
     const handleSubmit = (e: any) => {
+        const payload = {
+            date: new Date().toString().substr(0,15),
+            employeeId: EmployeeId,
+            associateName: AssociateName,
+            MISDepartment: MISDepartment,
+            accountName: AccountName,
+            managerName: ManagerName,
+            role: Role,
+            currentTravelStatus: currentTravelStatus,
+            country: Country,
+            personalStatus: PersonalStatus,
+            officeLocation: OfficeLocation,
+            workFromHome: WorkFromHome,
+            onPersonalLeave: PersonalLeave
+        }
 
+        console.log(payload);
     }
 
     // Events 
@@ -95,7 +112,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
     }
 
     const handleOfficeLocation = (value: string) => {
-
+        setOfficeLocation(value);
     }
 
     const handleWorkFromHomeButton1 = () => {
@@ -354,6 +371,9 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                     <SubmitButton disable = {disableSubmitButton} onClick={handleSubmit} />
                 </div>
             </form>
+            <div className = {classes.table}>
+            <DailyUpdatesTable/>
+            </div>
         </div>
      );
 }
@@ -774,7 +794,14 @@ const useStyles = makeStyles({
     Button: {
         position: 'absolute',
         left: '700px',
-        top: '1200px',
+        top: '1350px',
+    },
+
+    table: {
+        position: 'absolute',
+        left: '400px',
+        top: '1450px',
+        width: '50%',
     },
 });
 
