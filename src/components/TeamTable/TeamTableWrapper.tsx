@@ -9,7 +9,7 @@ export function TeamTableWrapper () {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.root}>
+    <Grid item className={classes.root}>
       <Filter />
       <TeamTable />
     </Grid>
@@ -19,11 +19,6 @@ export function TeamTableWrapper () {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     border: '1px black solid',
-    padding: 20,
-    [theme.breakpoints.down('md')]: {
-      paddingTop: 50,
-      paddingLeft: 15,
-      paddingRight: 15
-    }
+    width: '100%'
   }
 }));

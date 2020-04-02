@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { Grid, Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
@@ -8,17 +8,35 @@ import * as TeamActions from '../../actions/team';
 import { TeamList } from '../../model';
 import { RootState } from '../../reducers'; 
 import { Link } from 'react-router-dom';
-import * as CCActions from '../../actions/closeContact';
+import { CloseContactModal } from './CloseContactModal';
 
 export function TeamTable () {
   const classes = useStyles()
-
+  const [open, setOpen] = React.useState(false)
+  const [selectedCC, setSelectedCC] = React.useState<TeamList>({
+    employeeId: '',
+    fullName: '',
+    latestDate: '',
+    MISDepartment: '',
+    workLocation: '',
+    personalStatus: '',
+    travelStatus: ''
+  })
   const teamActions = useActions(TeamActions)
-  const closeContactActions = useActions(CCActions)
   
-  useEffect(() => { 
+  const handleCloseCC = () => {
+    setOpen(false)
+  }
+
+  const handleOpenCC = (teamMate: TeamList) => {
+    setSelectedCC(teamMate)
+    setOpen(true)
+  }
+
+
+  React.useEffect(() => { 
     teamActions.setTeamList(teamListData)
-  }, []);
+  }, [])
   
   const teamList = useSelector((state: RootState) => state.teamList)
 
@@ -46,6 +64,7 @@ export function TeamTable () {
 
   return (
     <Grid item xs={12}>
+      <CloseContactModal open={open} onClose={handleCloseCC} selectedCC={selectedCC} />
       <Paper>
         <Table className={classes.table}>
           <TableHead>
@@ -77,7 +96,7 @@ export function TeamTable () {
                   <TableCell>{teamMate.travelStatus}</TableCell>
                   <TableCell>
                     {highlight(teamMate.personalStatus) 
-                    ?<Button size="small" variant="contained" color="primary" onClick={() => closeContactActions.toggleCC(true)}>Close Contact</Button>
+                    ?<Button size="small" variant="contained" color="primary" onClick={() => handleOpenCC(teamMate)}>Close Contact</Button>
                     : null}
                   </TableCell>
                 </TableRow>
