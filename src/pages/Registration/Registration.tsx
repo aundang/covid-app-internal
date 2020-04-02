@@ -207,7 +207,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                 <Box display="flex" justifyContent="flex-start">
                     <FormControl>
                         <InputLabel className={classes.CountryLabel}>Country:</InputLabel>
-                        <DropDown onChange={handleCountry} styles={classes.CountryDropDown} />
+                        <DropDown label = "Country" onChange={handleCountry} styles={classes.CountryDropDown} />
                     </FormControl>
                 </Box>
 

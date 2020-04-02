@@ -143,14 +143,74 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                         </Button>
                         </div>
                     </FormControl>
+                    </Box>
 
-                    <Box display="flex" justifyContent="flex-start" visibility = {CountryVisibility}>
+                    <Box id = "travel" visibility = {CountryVisibility}>
+                    <Box display="flex" justifyContent="flex-start">
                         <FormControl>
                             <InputLabel className={classes.CountryLabel}>Country:</InputLabel>
-                            <DropDown onChange={handlePersonalStatus} styles={classes.CountryDropDown} />
+                            <DropDown label = "Country" onChange={handlePersonalStatus} styles={classes.CountryDropDown} />
                         </FormControl>
                     </Box>
-                </Box>
+
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.PersonalStatusCountryLabel}>Personal Status:</InputLabel>
+                            <DropDown label = "Personal Status" onChange={handlePersonalStatus} styles={classes.PersonalStatusCountryDropDown} />
+                        </FormControl>
+                    </Box>
+
+                        <Box display="flex" justifyContent="flex-start">
+                            <FormControl>
+                                <InputLabel className={classes.OfficeLocationCountryLabel}>Office Location:</InputLabel>
+                                <TextBox
+                                    label="Office Location"
+                                    readOnly={false}
+                                    styles={classes.OfficeLocationCountryTextBox}
+                                    onChange={""}
+                                    textValue="" />
+                            </FormControl>
+                        </Box>
+                        
+
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.WorkFromHomeCountryLabel}>Work From Home: </InputLabel>
+                            <div className="col1">
+                                <Button variant="contained" color={buttonColorTravel1} className={classes.WorkFromHomebutton1}
+                                    onClick={handleTravelButton1}>
+                                    Yes
+                        </Button>
+                            </div>
+                            <div className="col2">
+                                <Button variant="contained" color={buttonColorTravel2} className={classes.WorkFromHomebutton2}
+                                    onClick={handleTravelButton2}>
+                                    No
+                        </Button>
+                            </div>
+                        </FormControl>
+                    </Box>
+
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.OnPersonalLeaveCountryLabel}>On Personal Leave: </InputLabel>
+                            <div className="col1">
+                                <Button variant="contained" color={buttonColorTravel1} className={classes.OnPersonalLeavebutton1}
+                                    onClick={handleTravelButton1}>
+                                    Yes
+                        </Button>
+                            </div>
+                            <div className="col2">
+                                <Button variant="contained" color={buttonColorTravel2} className={classes.OnPersonalLeavebutton2}
+                                    onClick={handleTravelButton2}>
+                                    No
+                        </Button>
+                            </div>
+                        </FormControl>
+                    </Box>
+
+
+                    </Box>
 
             </form>
         </div>
@@ -332,9 +392,9 @@ const useStyles = makeStyles({
         width: '200px',
         flexWrap: 'wrap',
         height: '20px',
-        left: '240px',
+        left: '350px',
         right: '1008px',
-        top: '360px',
+        top: '260px',
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight: 'normal',
@@ -346,79 +406,119 @@ const useStyles = makeStyles({
 
     CountryDropDown: {
         width: '200px',
-        left: '340px',
-        top: '360px',
+        left: '450px',
+        top: '260px',
     },
 
-    // AccountNameLabel: {
-    //     position: 'absolute',
-    //     display: 'flex',
-    //     width: '200px',
-    //     flexWrap: 'wrap',
-    //     height: '20px',
-    //     left: '240px',
-    //     right: '1008px',
-    //     top: '330px',
-    //     fontFamily: 'Inter',
-    //     fontStyle: 'normal',
-    //     fontWeight: 'normal',
-    //     fontSize: '20px',
-    //     lineHeight: '20px',
-    //     textAlign: 'center',
-    //     color: '#8F8F8F',
-    // },
+    PersonalStatusCountryLabel: {
+        position: 'absolute',
+        display: 'flex',
+        width: '200px',
+        flexWrap: 'wrap',
+        height: '20px',
+        left: '300px',
+        right: '1008px',
+        top: '300px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
 
-    // AccountNameTextBox: {
-    //     left: '450px',
-    //     top: '330px',
-    // },
+    PersonalStatusCountryDropDown: {
+        width: '200px',
+        left: '450px',
+        top: '300px',
+    },
 
-    // CountryLabel: {
-    //     position: 'absolute',
-    //     display: 'flex',
-    //     flexWrap: 'wrap',
-    //     height: '20px',
-    //     left: '310px',
-    //     right: '1008px',
-    //     top: '370px',
-    //     fontFamily: 'Inter',
-    //     fontStyle: 'normal',
-    //     fontWeight: 'normal',
-    //     fontSize: '20px',
-    //     lineHeight: '20px',
-    //     textAlign: 'center',
-    //     color: '#8F8F8F',
-    // },
+    OfficeLocationCountryLabel: {
+        position: 'absolute',
+        display: 'flex',
+        flexWrap: 'wrap',
+        width: '200px',
+        height: '20px',
+        left: '300px',
+        right: '1008px',
+        top: '340px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
 
-    // CountryDropDown: {
-    //     left: '450px',
-    //     top: '370px',
-    //     minWidth: 200,
-    // },
+    OfficeLocationCountryTextBox: {
+        left: '450px',
+        top: '340px',
+        minWidth: 200,
+    },
 
-    // WorkLocationLabel: {
-    //     position: 'absolute',
-    //     display: 'flex',
-    //     width: '200px',
-    //     flexWrap: 'wrap',
-    //     height: '20px',
-    //     left: '240px',
-    //     right: '1008px',
-    //     top: '410px',
-    //     fontFamily: 'Inter',
-    //     fontStyle: 'normal',
-    //     fontWeight: 'normal',
-    //     fontSize: '20px',
-    //     lineHeight: '20px',
-    //     textAlign: 'center',
-    //     color: '#8F8F8F',
-    // },
+    WorkFromHomeCountryLabel: {
+        position: 'absolute',
+        display: 'flex',
+        width: '200px',
+        flexWrap: 'wrap',
+        height: '20px',
+        left: '280px',
+        right: '1008px',
+        top: '360px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
 
+    WorkFromHomebutton1: {
+        height: '50px',
+        left: '450px',
+        width: '100px',
+        top: '360px',
+    },
+    WorkFromHomebutton2: {
+        height: '50px',
+        left: '600px',
+        width: '100px',
+        top: '310px',
+    },
 
-    // WorkLocationTextBox: {
-    //     left: '450px',
-    //     top: '410px',
-    // },
+    OnPersonalLeaveCountryLabel: {
+        position: 'absolute',
+        display: 'flex',
+        width: '200px',
+        flexWrap: 'wrap',
+        height: '20px',
+        left: '280px',
+        right: '1008px',
+        top: '350px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
+
+    OnPersonalLeavebutton1: {
+        height: '50px',
+        left: '450px',
+        width: '100px',
+        top: '350px',
+    },
+   OnPersonalLeavebutton2: {
+        height: '50px',
+        left: '600px',
+        width: '100px',
+        top: '300px',
+    },
 
     Button: {
         position: 'absolute',
@@ -427,5 +527,7 @@ const useStyles = makeStyles({
     },
 
 });
+
+
 
 

@@ -8,9 +8,10 @@ import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
 export interface DropDownListProps {
     onChange: any;
     styles: any;
+    label: string;
 }
 
-const DropDownList: React.SFC<DropDownListProps> = ({onChange, styles}) => {
+const DropDownList: React.SFC<DropDownListProps> = ({onChange, styles, label}) => {
     const [country, setCountry] = useState<string>("");
    // const classes = useStyles();
 
@@ -20,13 +21,13 @@ const DropDownList: React.SFC<DropDownListProps> = ({onChange, styles}) => {
     }
     return (
         <FormControl variant="outlined" className = {styles}>
-            <InputLabel id="countryLabel">Country</InputLabel>
+            <InputLabel id="countryLabel">{label}</InputLabel>
             <Select
                 labelId="countryLabel"
                 id="countrySelect"
                 value={country}
                 onChange= {(eve) => handleChange(eve.target.value)}
-                label="Country"
+                label= {label}
             >   
                 <MenuItem value={"Singapore"}>Singapore</MenuItem>
                 <MenuItem value={"Malaysia"}>Malaysia</MenuItem>
