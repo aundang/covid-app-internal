@@ -1,11 +1,32 @@
-import { RegistrationAction, RegistrationActions, registrationData } from '../model';
+import {
+  RegistrationAction,
+  RegistrationActions,
+  IRegistrationData
+} from '../model';
 import createReducer from './createReducer';
 
+export const registrationData = createReducer<IRegistrationData>(
+  {
+    employeeId: '',
+    firstName: '',
+    lastName: '',
+    managerFirstName: '',
+    managerLastName: '',
+    managerEmployeeId: '',
+    role: '',
+    MISDepartment: '',
+    accountName: '',
+    country: '',
+    workLocation: ''
+  },
+  {
+    [RegistrationActions.SUBMIT_DATA](
+      state: IRegistrationData,
+      action: RegistrationAction
+    ) {
+      //const newData: IRegistrationData = action.payload;
 
- 
-
-export const registrationList = createReducer<registrationData[]>([], {
-    [RegistrationActions.SUBMIT_DATA](state: registrationData[], action: RegistrationAction) {
-       return[...state, action.payload];
-    },
-});
+      return action.payload;
+    }
+  }
+);

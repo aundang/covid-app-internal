@@ -1,6 +1,12 @@
 import { History } from 'history';
 import { combineReducers } from 'redux';
-import { IEmployee, SearchBar, TeamList, CC, registrationData } from '../model';
+import {
+  IEmployee,
+  SearchBar,
+  TeamList,
+  CC,
+  IRegistrationData
+} from '../model';
 import * as employeeReducer from './employee';
 import * as searchBarReducer from './searchBar';
 import * as teamReducer from './team';
@@ -12,7 +18,7 @@ export interface RootState {
   searchBar: SearchBar[];
   teamList: TeamList[];
   closeContact: CC[];
-  registrationData: registrationData;
+  registrationData: IRegistrationData;
 }
 
 export default (history: History) =>
