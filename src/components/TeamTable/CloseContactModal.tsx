@@ -22,9 +22,9 @@ export function CloseContactModal(props: Props) {
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
       <DialogTitle className={classes.title}>{'People who came into close contact with ' + selectedCC.fullName}</DialogTitle>
       
-        {mockCC.map((employee: CloseContactPersonal) => {
+        {mockCC.map((employee: CloseContactPersonal, i: number) => {
           return (
-            <Grid item xs={12} className={classes.cards} justify="center">
+            <Grid item key={i} xs={12} className={classes.cards}>
               <CCDetailsCard employee={employee}/>
             </Grid>
           )

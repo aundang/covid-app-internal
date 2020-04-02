@@ -18,7 +18,6 @@ export function TeamTableWrapper () {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    border: '1px black solid',
     width: '100%'
   }
 }));

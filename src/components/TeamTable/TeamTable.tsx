@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Grid, Typography, Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import { useSelector } from 'react-redux';
@@ -22,6 +22,7 @@ export function TeamTable () {
     personalStatus: '',
     travelStatus: ''
   })
+  const [filteredTeamList, setFilteredTeamList] = React.useState([])
   const teamActions = useActions(TeamActions)
   
   const handleCloseCC = () => {
@@ -39,6 +40,8 @@ export function TeamTable () {
   }, [])
   
   const teamList = useSelector((state: RootState) => state.teamList)
+  let filterSelected: any = new Array()
+  filterSelected = useSelector((state: RootState) => state.filterOptions)
 
   function highlight(personalStatus: string) {
     switch(personalStatus) {
@@ -62,6 +65,123 @@ export function TeamTable () {
     }
   }
 
+  React.useEffect(() => {
+    const filteredList: any = filter(teamList)
+    setFilteredTeamList(filteredList)
+  }, [filterSelected])
+
+  const filter = (teamList: any) => {
+    let FL = teamList
+
+    if (filterSelected.personalStatus && filterSelected.personalStatus.length > 0) {
+      FL = helperFilterPS(FL)
+    }
+    if (filterSelected.travelStatus && filterSelected.travelStatus.length > 0) {
+      FL = helperFilterTS(FL)
+    }
+    if (filterSelected.MISDepartment && filterSelected.MISDepartment.length > 0) {
+      FL = helperFilterMD(FL)
+    }
+    if (filterSelected.workLocation && filterSelected.workLocation.length > 0) {
+      FL = helperFilterWL(FL)
+    }
+    
+    return FL
+  }
+
+  const helperFilterWL = (teamList: any) => {
+    let FL: any = new Array()
+    teamList.forEach((teamMate: TeamList) => {
+      filterSelected.workLocation.forEach((selected: string) => {
+        switch (selected) {
+          case 'WFH':
+            if(teamMate.workLocation === 'Work from home') FL.push(teamMate)
+            break
+
+          case 'CS':
+            if(teamMate.workLocation === 'Client Side') FL.push(teamMate)
+            break
+
+        }
+      })
+    })
+    return FL
+  }
+
+  const helperFilterMD = (teamList: any) => {
+    let FL: any = new Array()
+    teamList.forEach((teamMate: TeamList) => {
+      filterSelected.MISDepartment.forEach((selected: string) => {
+        switch (selected) {
+          case 'CDE':
+            if(teamMate.MISDepartment === 'CDE') FL.push(teamMate)
+            break
+
+          case 'ABC':
+            if(teamMate.MISDepartment === 'ABC') FL.push(teamMate)
+            break
+
+          case 'HR':
+            if(teamMate.MISDepartment === 'HR') FL.push(teamMate)
+            break
+        }
+      })
+    })
+    return FL
+  }
+
+  const helperFilterTS = (teamList: any) => {
+    let FL: any = new Array()
+    teamList.forEach((teamMate: TeamList) => {
+      filterSelected.travelStatus.forEach((selected: string) => {
+        switch (selected) {
+          case 'NT':
+            if(teamMate.travelStatus === 'No Travel') FL.push(teamMate)
+            break
+
+          case 'T':
+            if(teamMate.travelStatus === 'Travel') FL.push(teamMate)
+            break
+        }
+      })
+    })
+    return FL
+  }
+
+  const helperFilterPS = (teamList: any) => {
+    let FL: any = new Array()
+    teamList.forEach((teamMate: TeamList) => {
+      filterSelected.personalStatus.forEach((selected: string) => {
+        switch (selected) {
+          case 'NS':
+            if(teamMate.personalStatus === 'No Status') FL.push(teamMate)
+            break
+
+          case 'CC':
+            if(teamMate.personalStatus === 'Confirmed Case') FL.push(teamMate)
+            break
+
+          case 'SC':
+            if(teamMate.personalStatus === 'Suspected Case') FL.push(teamMate)
+            break
+
+          case 'LOA':
+            if(teamMate.personalStatus === 'Leave of Absence') FL.push(teamMate)
+            break
+
+          case 'SHN':
+            if(teamMate.personalStatus === 'Stay-Home Notice') FL.push(teamMate)
+            break
+
+          case 'EPM':
+            if(teamMate.personalStatus === 'Extra Precautionary Measure') FL.push(teamMate)
+            break
+        }
+      })
+    })
+    return FL
+  }
+
   return (
     <Grid item xs={12}>
       <CloseContactModal open={open} onClose={handleCloseCC} selectedCC={selectedCC} />
@@ -80,7 +200,7 @@ export function TeamTable () {
             </TableRow>
           </TableHead>
           <TableBody>
-            {teamList.map((teamMate: TeamList, i: number) => {
+            {filteredTeamList.map((teamMate: TeamList, i: number) => {
               return (
                 <TableRow key={i}
                   // component={Link}
@@ -100,11 +220,15 @@ export function TeamTable () {
                     : null}
                   </TableCell>
                 </TableRow>
-                
               )
             })}
           </TableBody>
         </Table>
+        {filteredTeamList.length < 1 && 
+          <Typography variant="h6" className={classes.notFound}>
+            No team members found, please change filter values.
+          </Typography>
+        }
       </Paper>
     </Grid>
   )
@@ -140,6 +264,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   button: {
     background: '#'
+  },
+  notFound: {
+    margin: 20,
+    textAlign: 'center'
   }
 }));
 
