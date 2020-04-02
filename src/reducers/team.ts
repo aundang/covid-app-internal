@@ -1,4 +1,4 @@
-import { TeamActions, TeamAction, TeamList, CC } from '../model';
+import { TeamActions, TeamAction, TeamList } from '../model';
 import createReducer from './createReducer';
 
 export const teamList = createReducer<TeamList[]>([], {

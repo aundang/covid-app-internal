@@ -10,6 +10,13 @@ export interface TeamList {
   travelStatus: string;
 }
 
+export interface CloseContactPersonal {
+  employeeId: string,
+  fullName: string,
+  phoneNumber: string,
+  email: string
+}
+
 export enum TeamActions {
   SET_TEAMLIST = 'SET_TEAMLIST'
 }
