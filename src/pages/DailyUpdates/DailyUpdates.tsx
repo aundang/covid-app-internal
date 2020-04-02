@@ -7,6 +7,8 @@ import { makeStyles, StylesContext } from '@material-ui/styles';
 import DropDown from '../../components/Form/DropDown';
 import Button from '@material-ui/core/Button';
 import { DailyUpdatesTable} from '../../components/DailyUpdatesTable/DailyUpdatesTable';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 
 export interface DailyUpdatesProps {
     
@@ -15,6 +17,8 @@ export interface DailyUpdatesProps {
 export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
     const classes = useStyles();
+    const RegistrationData = useSelector((state: RootState) => state.registrationData);
+   // const registrationActions = useActions(RegistrationActions);
 
     // initial states for the text fields 
     const [EmployeeId, setEmployeeId] = useState<string>("");
@@ -32,15 +36,20 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
     useEffect(
         () => {
-           setEmployeeId("emp id");
-           setAssociateName("associate name");
-           setMISDepartment("mis department");
-           setAccountName("account name");
-           setManagerName("manager name");
-           setRole("role");
-           setOfficeLocation("location");
+        //     if (registrationData.employeeId !== undefined && registrationData.firstName !== undefined) {
+        //       setEmployeeId(registrationData.employeeId);
+        // //    setAssociateName(registrationData.firstName + " " + registrationData.lastName);
+        // //    setMISDepartment(registrationData.MISDepartment);
+        // //    setAccountName(registrationData.accountName);
+        // //    setManagerName(registrationData.managerFirstName + " " + registrationData.managerLastName);
+        // //    setRole(registrationData.role);
+        // //    setOfficeLocation(registrationData.workLocation);
+        //     }
+            // if(RegistrationData !== undefined) {
+            // console.log(RegistrationData + "daily updates");
+            // }
         },
-        [EmployeeId, AssociateName, MISDepartment, AccountName, ManagerName, Role]
+        []
     ); 
 
 
@@ -77,7 +86,9 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
             onPersonalLeave: PersonalLeave
         }
 
-        console.log(payload);
+       // console.log(payload);
+       //console.log(RegistrationData);
+
     }
 
     // Events 

@@ -31,7 +31,22 @@ export const Registration: React.SFC<RegistrationProps> = () => {
     const registrationActions = useActions(RegistrationActions);
     // gets the payload from the text fields 
     const handleSubmit = (e: any) => {
-        const payload = {
+        // const payload = {
+        //     employeeId: EmployeeId,
+        //     firstName: FirstName,
+        //     lastName: LastName,
+        //     managerFirstName: ManagerFirstName,
+        //     managerLastName: ManagerLastName,
+        //     managerEmployeeId: ManagerEmpId,
+        //     role: Role,
+        //     MISDepartment: MISDepartment,
+        //     accountName: Account,
+        //     country: Country,
+        //     workLocation: WorkLocation,
+        // }
+      
+        console.log("registration send");
+        registrationActions.submitData({
             employeeId: EmployeeId,
             firstName: FirstName,
             lastName: LastName,
@@ -43,10 +58,8 @@ export const Registration: React.SFC<RegistrationProps> = () => {
             accountName: Account,
             country: Country,
             workLocation: WorkLocation,
-        }
-      
-        registrationActions.submitData(payload);
-        //console.log(payload);
+        });
+        
     }
 
     // sets the state values for the individual fields 

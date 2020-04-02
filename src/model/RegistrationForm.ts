@@ -12,9 +12,8 @@ export interface registrationData {
     workLocation: string,
 }
 
-export enum RegistrationDataActions {
-    SUBMIT_DATA = 'SUBMIT_DATA',
-    RETRIEVE_DATA = 'RETRIEVE_DATA'
+export enum RegistrationActions {
+    SUBMIT_DATA = 'SUBMIT_DATA'
 }
 
 interface registrationActionType<T, P> {
@@ -23,5 +22,4 @@ interface registrationActionType<T, P> {
 }
 
 export type RegistrationAction =
-    | registrationActionType<typeof RegistrationDataActions.SUBMIT_DATA, registrationData>
-    | registrationActionType<typeof RegistrationDataActions.RETRIEVE_DATA, registrationData>
+    | registrationActionType<typeof RegistrationActions.SUBMIT_DATA, registrationData>
