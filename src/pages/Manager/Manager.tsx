@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Container } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles, withStyles } from '@material-ui/styles';
 import { ChartStatus } from '../../components/Charts/ChartStatus';
@@ -26,9 +26,12 @@ export function Manager() {
         justify='center'
         alignItems='center'
         direction='row'
+        className={classes.root}
       >
-      <ChartStatus />
-      <ChartLocation />
+      <div style={{ display: 'flex', flexDirection: 'row'}}>
+        <div style={{margin: '10px'}}><ChartStatus /></div>
+        <div style={{margin: '10px'}}><ChartLocation /></div>
+      </div>
       </Grid>
       <SearchBar />
       <TeamTableWrapper />
@@ -58,10 +61,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: 20,
     [theme.breakpoints.down('md')]: {
-      paddingTop: 50,
+      paddingTop: 30,
       paddingLeft: 15,
       paddingRight: 15
-    },
+    }
   }
 }));
 
