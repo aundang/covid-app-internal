@@ -27,7 +27,6 @@ export function ChartLocation() {
             animationEasing="ease-out"
             cx={50}
             cy={50}
-            totalValue = {20}
             data={dataMock}
             label={false}
             labelPosition={50}

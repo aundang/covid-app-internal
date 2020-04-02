@@ -53,7 +53,6 @@ export function ChartStatus() {
             animationEasing="ease-out"
             cx={50}
             cy={50}
-            totalValue = { 18 }
             data={dataMock}
             label={false}
             labelPosition={50}
@@ -71,6 +70,11 @@ export function ChartStatus() {
                 100
             ]}
             />
+
+            {/* <Grid className='chartlegend'
+                  direction='row'>
+
+            </Grid> */}
 
                 <div className='chartLegend'>
                     <div className='legendHeaders' style={{ display: 'flex', justifyContent:'space-between'}}>
