@@ -4,14 +4,16 @@ import {
   IEmployee,
   SearchBar,
   TeamList,
+  FilterOptions,
   IRegistrationData,
-  FilterOptions
+  IDailyUpdatesData
 } from '../model';
 import * as employeeReducer from './employee';
 import * as searchBarReducer from './searchBar';
 import * as teamReducer from './team';
 import * as registrationReducer from './RegistrationReducer';
 import * as filterReducer from './filter'
+import * as dailyUpdatesReducer from './DailyUpdatesReducer';
 
 export interface RootState {
   employeeList: IEmployee[];
@@ -19,6 +21,7 @@ export interface RootState {
   teamList: TeamList[];
   registrationData: IRegistrationData;
   filterOptions: FilterOptions[]
+  dailyUpdatesData: IDailyUpdatesData;
 }
 
 export default (history: History) =>
@@ -27,5 +30,7 @@ export default (history: History) =>
     ...searchBarReducer,
     ...teamReducer,
     ...registrationReducer,
-    ...filterReducer
+    ...filterReducer,
+    ...registrationReducer,
+    ...dailyUpdatesReducer
   });

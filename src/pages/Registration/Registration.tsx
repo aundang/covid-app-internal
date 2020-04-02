@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import DropDown from '../../components/Form/DropDown';
 import { useActions } from '../../actions/';
 import * as RegistrationActions from '../../actions/RegistrationForm';
-// import { IRegistrationData } from '../../model';
+import { history } from '../../configureStore';
 
 export interface RegistrationProps {}
 
@@ -33,20 +33,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
 
   // gets the payload from the text fields
   const handleSubmit = (e: any) => {
-    // const payload = {
-    //   employeeId: EmployeeId,
-    //   firstName: FirstName,
-    //   lastName: LastName,
-    //   managerFirstName: ManagerFirstName,
-    //   managerLastName: ManagerLastName,
-    //   managerEmployeeId: ManagerEmpId,
-    //   role: Role,
-    //   MISDepartment: MISDepartment,
-    //   accountName: Account,
-    //   country: Country,
-    //   workLocation: WorkLocation
-    // };
-
+  
     console.log('Submitting');
     registrationActions.submitData({
       employeeId: EmployeeId,
@@ -61,6 +48,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
       country: Country,
       workLocation: WorkLocation
     });
+    history.push('/dailyupdates');
   };
 
   // sets the state values for the individual fields
