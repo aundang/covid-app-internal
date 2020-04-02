@@ -1,6 +1,6 @@
-import { makeStyles, Paper, Theme, Typography, FormHelperText } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 import * as React from 'react';
-import { Grid, Button, Box } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import DonutChart  from 'react-minimal-pie-chart';
 
 
@@ -184,9 +184,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     cubeReference: {
         fontSize: 12
+        
     },
     countReference: {
         fontSize: 12,
+        fontWeight: 'bold',
         marginRight: '3vw'
     }  
   }));  

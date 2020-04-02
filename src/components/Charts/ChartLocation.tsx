@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, Button, Box, Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import DonutChart from 'react-minimal-pie-chart';
@@ -111,9 +111,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     cubeReference: {
         fontSize: 12
+        
     },
     countReference: {
         fontSize: 12,
+        fontWeight: 'bold',
         marginRight: '3vw'
     }  
     
