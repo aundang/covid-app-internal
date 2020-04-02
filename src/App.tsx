@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { Route, Router } from 'react-router-dom';
 import { history } from './configureStore';
 import { IEmployee } from './model';
-import { HomePage, Employee, Manager, Registration} from './pages';
+import { HomePage, Employee, Manager, Registration, DailyUpdates} from './pages';
 import { RootState } from './reducers/index';
 import { withRoot } from './withRoot';
 import { employeeList } from './reducers/employee';
@@ -25,7 +25,8 @@ function Routes() {
       <Route exact={true} path="/home" component={HomePage} />
       <Route exact={true} path="/tracker" component={Employee} />
       <Route exact={true} path="/manager" component={Manager}/>
-      <Route exact={true} path="/registration" component={Registration} />
+      <Route exact={true} path="/registration" component={Registration}/>
+      <Route exact={true} path="/dailyupdates" component={DailyUpdates} />
     </div>
   );
 }
@@ -67,6 +68,14 @@ function Drawer(props: { employeeList: IEmployee[] }) {
             <SupervisorAccountIcon />
           </ListItemIcon>
           <ListItemText primary="Registration" />
+        </ListItem>
+      </List>
+      <List>
+        <ListItem button onClick={() => history.push('/dailyupdates')}>
+          <ListItemIcon>
+            <SupervisorAccountIcon />
+          </ListItemIcon>
+          <ListItemText primary="Daily Updates" />
         </ListItem>
       </List>
     </div>

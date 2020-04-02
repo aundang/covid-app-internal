@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { FormControl, InputLabel } from '@material-ui/core';
 import TextBox from '../../components/Form/TextBox';
 import SubmitButton from '../../components/Form/SubmitButton';
@@ -29,26 +29,26 @@ export const Registration: React.SFC<RegistrationProps> = () => {
 
     // gets the payload from the text fields 
     const handleSubmit = (e: any) => {
-       const payload = {
-           employeeId: EmployeeId,
-           firstName: FirstName,
-           lastName: LastName,
-           managerFirstName: ManagerFirstName,
-           managerLastName: ManagerLastName,
-           managerEmployeeId: ManagerEmpId,
-           role: Role,
-           MISDepartment: MISDepartment,
-           accountName: Account,
-           country: Country,
-           workLocation: WorkLocation,							
-       }
+        const payload = {
+            employeeId: EmployeeId,
+            firstName: FirstName,
+            lastName: LastName,
+            managerFirstName: ManagerFirstName,
+            managerLastName: ManagerLastName,
+            managerEmployeeId: ManagerEmpId,
+            role: Role,
+            MISDepartment: MISDepartment,
+            accountName: Account,
+            country: Country,
+            workLocation: WorkLocation,
+        }
 
-       console.log(payload);
+        console.log(payload);
     }
 
     // sets the state values for the individual fields 
     const handleEmployeeId = (value: string) => {
-       setEmployeeId(value);
+        setEmployeeId(value);
     }
 
     const handleFirstName = (value: string) => {
@@ -56,7 +56,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
     }
 
     const handleLastName = (value: string) => {
-       setLastName(value);
+        setLastName(value);
     }
 
     const handleManagerFirstName = (value: string) => {
@@ -76,7 +76,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
     }
 
     const handleMISDepartment = (value: string) => {
-       setMISDepartment(value);
+        setMISDepartment(value);
     }
 
     const handleAccountName = (value: string) => {
@@ -88,7 +88,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
     }
 
     const handleWorkLocation = (value: string) => {
-       setWorkLocation(value);
+        setWorkLocation(value);
     }
 
 
@@ -100,10 +100,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.EmpIdLabel}>Employee Id: </InputLabel>
                         <TextBox
                             label="Employee Id"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.EmpIdTextBox}
-                            onChange={handleEmployeeId} />
+                            onChange={handleEmployeeId}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -112,10 +112,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.FirstNameLabel}>First Name: </InputLabel>
                         <TextBox
                             label="First Name"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.FirstNameTextBox}
-                            onChange={handleFirstName} />
+                            onChange={handleFirstName}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -124,10 +124,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.LastNameLabel}>Last Name: </InputLabel>
                         <TextBox
                             label="Last Name"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.LastNameTextBox}
                             onChange={handleLastName}
+                            textValue=""
                         />
                     </FormControl>
                 </Box>
@@ -137,10 +137,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.ManagerFirstNameLabel}>Manager's First Name: </InputLabel>
                         <TextBox
                             label="Manager's First Name"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.ManagerFirstNameTextBox}
-                            onChange={handleManagerFirstName} />
+                            onChange={handleManagerFirstName}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -149,10 +149,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.ManagerLastNameLabel}>Manager's Last Name: </InputLabel>
                         <TextBox
                             label="Manager's Last Name"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.ManagerLastNameTextBox}
-                            onChange={handleManagerLastName} />
+                            onChange={handleManagerLastName}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -161,10 +161,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.ManagerEmployeeIdLabel}>Manager's Employee Id:</InputLabel>
                         <TextBox
                             label="Manager's Employee Id"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.ManagerEmployeeIdTextBox}
-                            onChange={handleManagerEmpId} />
+                            onChange={handleManagerEmpId}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -173,10 +173,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.RoleLabel}>Role:</InputLabel>
                         <TextBox
                             label="Role"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.RoleTextBox}
-                            onChange={handleRole} />
+                            onChange={handleRole}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -185,10 +185,10 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.MISDepartmentLabel}>MIS Department:</InputLabel>
                         <TextBox
                             label="MIS Department"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.MISTextBox}
-                            onChange={handleMISDepartment} />
+                            onChange={handleMISDepartment}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
@@ -197,17 +197,17 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.AccountNameLabel}>Account Name:</InputLabel>
                         <TextBox
                             label="Account Name"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.AccountNameTextBox}
-                            onChange={handleAccountName} />
+                            onChange={handleAccountName}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
                 <Box display="flex" justifyContent="flex-start">
                     <FormControl>
                         <InputLabel className={classes.CountryLabel}>Country:</InputLabel>
-                        <DropDown onChange = {handleCountry} styles = {classes.CountryDropDown}/>
+                        <DropDown onChange={handleCountry} styles={classes.CountryDropDown} />
                     </FormControl>
                 </Box>
 
@@ -216,15 +216,15 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                         <InputLabel className={classes.WorkLocationLabel}>Work Location:</InputLabel>
                         <TextBox
                             label="Work Location"
-                            defaultValue=""
                             readOnly={false}
                             styles={classes.WorkLocationTextBox}
-                            onChange={handleWorkLocation} />
+                            onChange={handleWorkLocation}
+                            textValue="" />
                     </FormControl>
                 </Box>
 
                 <div className={classes.Button}>
-                    <SubmitButton onClick = {handleSubmit}/>
+                    <SubmitButton onClick={handleSubmit} />
                 </div>
 
 
