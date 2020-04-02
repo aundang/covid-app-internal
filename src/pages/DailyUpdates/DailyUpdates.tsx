@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Box from '@material-ui/core/Box';
 import { FormControl, InputLabel } from '@material-ui/core';
 import TextBox from '../../components/Form/TextBox';
@@ -14,11 +14,48 @@ export interface DailyUpdatesProps {
 export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
     const classes = useStyles();
+
     // initial states for the text fields 
     const [EmployeeId, setEmployeeId] = useState<string>("");
+    const [AssociateName, setAssociateName] = useState<string>("");
+    const [MISDepartment, setMISDepartment] = useState<string>("");
+    const [AccountName, setAccountName] = useState<string>("");
+    const [ManagerName, setManagerName] = useState<string>("");
+    const [Role, setRole] = useState<string>("");
+    const [currentTravelStatus, setCurrentTravelStatus] = useState<string>("");
+    const [Country, setCountry] = useState<string>("Singapore");
+    const [PersonalStatus, setPersonalStatus] = useState<string>("");
+    const [OfficeLocation, setOfficeLocation] = useState<string>("");
+    const [WorkFromHome, setWorkFromHome] = useState<string>("");
+    const [PersonalLeave, setPersonalLeave] = useState<string>("");
+
+    useEffect(
+        () => {
+           setEmployeeId("emp id");
+           setAssociateName("associate name");
+           setMISDepartment("mis department");
+           setAccountName("account name");
+           setManagerName("manager name");
+           setRole("role");
+           setOfficeLocation("location");
+        },
+        [EmployeeId, AssociateName, MISDepartment, AccountName, ManagerName, Role]
+    ); 
+
+
+
+
+
+    // switch cases 
     const [buttonColorTravel1, setButtonColorTravel1 ] = useState<any>("Transparent");
     const [buttonColorTravel2, setButtonColorTravel2] = useState<any>("Transparent");
-    const [CountryVisibility, setCountryVisibility] = useState<any>("hidden");
+    const [CountryVisibilityTravel, setCountryVisibilityTravel] = useState<string>("hidden");
+    const [CountryVisibilityNoTravel, setCountryVisibilityNoTravel] = useState<string>("hidden");
+    const [buttonColorWorkFromHome1, setButtonColorWorkFromHome1] = useState<any>("Transparent");
+    const [buttonColorWorkFromHome2, setButtonColorWorkFromHome2] = useState<any>("Transparent");
+    const [buttonColorPersonalLeave1, setbuttonColorPersonalLeave1] = useState<any>("Transparent");
+    const [buttonColorPersonalLeave2, setButtonColorPersonalLeave2] = useState<any>("Transparent");
+    const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(true);
 
 
     // when form submitted, capture the payload
@@ -26,30 +63,76 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
     }
 
-    const handleEmployeeId = () => {
-
-    }
-
-    const handlePersonalStatus = () => {
-
-    }
-
+    // Events 
     const handleTravelButton1 = () => {
-        if(buttonColorTravel1 === "Transparent") {
-        setButtonColorTravel1("secondary");
-        setButtonColorTravel2("Transparent");
-        setCountryVisibility("");
-        } 
+        if (buttonColorTravel1 === "Transparent") {
+            setButtonColorTravel1("secondary");
+            setButtonColorTravel2("Transparent");
+        }
+        setCountryVisibilityTravel("");
+        setCountryVisibilityNoTravel("hidden");
+        setCurrentTravelStatus("Travel");
+
     }
 
     const handleTravelButton2 = () => {
         if (buttonColorTravel2 === "Transparent") {
             setButtonColorTravel2("secondary");
             setButtonColorTravel1("Transparent");
-            setCountryVisibility("hidden");
-        } 
+        }
+        setCountryVisibilityTravel("hidden");
+        setCountryVisibilityNoTravel("");
+        setCurrentTravelStatus("No Travel");
+        setCountry("Singapore");
+    }
+
+    const handleCountry = (value: string) => {
+        setCountry(value);
+    }
+
+    const handlePersonalStatus = (value: string) => {
+        setPersonalStatus(value);
+    }
+
+    const handleOfficeLocation = (value: string) => {
+
+    }
+
+    const handleWorkFromHomeButton1 = () => {
+        if (buttonColorWorkFromHome1 === "Transparent") {
+            setButtonColorWorkFromHome1("secondary");
+            setButtonColorWorkFromHome2("Transparent");
+        }
+
+        setWorkFromHome("Yes");
+    }
+
+    const handleWorkFromHomeButton2 = () => {
+        if (buttonColorWorkFromHome2 === "Transparent") {
+            setButtonColorWorkFromHome2("secondary");
+            setButtonColorWorkFromHome1("Transparent");
+        }
+        setWorkFromHome("No");
     }
     
+    const handlePersonalLeaveButton1 = () => {
+        if (buttonColorPersonalLeave1 === "Transparent") {
+            setbuttonColorPersonalLeave1("secondary");
+            setButtonColorPersonalLeave2("Transparent");
+        }
+
+        setPersonalLeave("Yes");
+    }
+
+    const handlePersonalLeaveButton2 = () => {
+        if (buttonColorPersonalLeave2=== "Transparent") {
+            setButtonColorPersonalLeave2("secondary");
+            setbuttonColorPersonalLeave1("Transparent");
+        }
+
+        setPersonalLeave("No");
+    }
+
 
     return ( 
         <div>
@@ -63,7 +146,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                             readOnly={true}
                             styles={classes.EmpIdTextBox}
                             onChange={""}
-                            textValue = "" />
+                            textValue = {EmployeeId} />
                     </FormControl>
                 </Box>
 
@@ -75,7 +158,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                             readOnly={true}
                             styles={classes.AssociateNameTextBox}
                             onChange={""}
-                            textValue="" />
+                            textValue= {AssociateName} />
                     </FormControl>
                 </Box>
 
@@ -87,7 +170,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                             readOnly={true}
                             styles={classes.MISDepartmentTextBox}
                             onChange={""}
-                            textValue="" />
+                            textValue= {MISDepartment} />
                     </FormControl>
                 </Box>
 
@@ -99,7 +182,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                             readOnly={true}
                             styles={classes.AccountNameTextBox}
                             onChange={""}
-                            textValue="" />
+                            textValue= {AccountName} />
                     </FormControl>
                 </Box>
 
@@ -111,7 +194,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                             readOnly={true}
                             styles={classes.ManagerNameTextBox}
                             onChange={""}
-                            textValue="" />
+                            textValue= {ManagerName} />
                     </FormControl>
                 </Box>
 
@@ -123,7 +206,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                             readOnly={true}
                             styles={classes.RoleTextBox}
                             onChange={""}
-                            textValue="" />
+                            textValue= {Role}/>
                     </FormControl>
                 </Box>
 
@@ -145,11 +228,11 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                     </FormControl>
                     </Box>
 
-                    <Box id = "travel" visibility = {CountryVisibility}>
+                    <Box id = "travel" visibility = {CountryVisibilityTravel}>
                     <Box display="flex" justifyContent="flex-start">
                         <FormControl>
                             <InputLabel className={classes.CountryLabel}>Country:</InputLabel>
-                            <DropDown label = "Country" onChange={handlePersonalStatus} styles={classes.CountryDropDown} />
+                            <DropDown label = "Country" onChange={handleCountry} styles={classes.CountryDropDown} />
                         </FormControl>
                     </Box>
 
@@ -167,8 +250,8 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                                     label="Office Location"
                                     readOnly={false}
                                     styles={classes.OfficeLocationCountryTextBox}
-                                    onChange={""}
-                                    textValue="" />
+                                    onChange={handleOfficeLocation}
+                                    textValue= {OfficeLocation} />
                             </FormControl>
                         </Box>
                         
@@ -177,14 +260,14 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                         <FormControl>
                             <InputLabel className={classes.WorkFromHomeCountryLabel}>Work From Home: </InputLabel>
                             <div className="col1">
-                                <Button variant="contained" color={buttonColorTravel1} className={classes.WorkFromHomebutton1}
-                                    onClick={handleTravelButton1}>
+                                <Button variant="contained" color={buttonColorWorkFromHome1} className={classes.WorkFromHomebutton1}
+                                    onClick={handleWorkFromHomeButton1}>
                                     Yes
                         </Button>
                             </div>
                             <div className="col2">
-                                <Button variant="contained" color={buttonColorTravel2} className={classes.WorkFromHomebutton2}
-                                    onClick={handleTravelButton2}>
+                                <Button variant="contained" color={buttonColorWorkFromHome2} className={classes.WorkFromHomebutton2}
+                                    onClick={handleWorkFromHomeButton2}>
                                     No
                         </Button>
                             </div>
@@ -195,23 +278,81 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                         <FormControl>
                             <InputLabel className={classes.OnPersonalLeaveCountryLabel}>On Personal Leave: </InputLabel>
                             <div className="col1">
-                                <Button variant="contained" color={buttonColorTravel1} className={classes.OnPersonalLeavebutton1}
-                                    onClick={handleTravelButton1}>
+                                <Button variant="contained" color={buttonColorPersonalLeave1} className={classes.OnPersonalLeavebutton1}
+                                    onClick={handlePersonalLeaveButton1}>
                                     Yes
                         </Button>
                             </div>
                             <div className="col2">
-                                <Button variant="contained" color={buttonColorTravel2} className={classes.OnPersonalLeavebutton2}
-                                    onClick={handleTravelButton2}>
+                                <Button variant="contained" color={buttonColorPersonalLeave2} className={classes.OnPersonalLeavebutton2}
+                                    onClick={handlePersonalLeaveButton2}>
+                                    No
+                        </Button>
+                            </div>
+                        </FormControl>
+                    </Box>
+                </Box>
+
+                <Box id="noTravel" visibility={CountryVisibilityNoTravel}>
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.PersonalStatusLabel}>PersonalStatus:</InputLabel>
+                            <DropDown label="Personal Status" onChange={handlePersonalStatus} styles={classes.PersonalStatusDropDown} />
+                        </FormControl>
+                    </Box>
+
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.OfficeLocationLabel}>Office Location:</InputLabel>
+                            <TextBox
+                                label="Office Location"
+                                readOnly={false}
+                                styles={classes.OfficeLocationTextBox}
+                                onChange={handleOfficeLocation}
+                                textValue= {OfficeLocation} />
+                        </FormControl>
+                    </Box>
+
+
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.WorkFromHomeLabel}>Work From Home: </InputLabel>
+                            <div className="col1">
+                                <Button variant="contained" color={buttonColorWorkFromHome1} className={classes.WorkFromHomebuttonNoTravel1}
+                                    onClick={handleWorkFromHomeButton1}>
+                                    Yes
+                        </Button>
+                            </div>
+                            <div className="col2">
+                                <Button variant="contained" color={buttonColorWorkFromHome2} className={classes.WorkFromHomebuttonNoTravel2}
+                                    onClick={handleWorkFromHomeButton2}>
                                     No
                         </Button>
                             </div>
                         </FormControl>
                     </Box>
 
-
+                    <Box display="flex" justifyContent="flex-start">
+                        <FormControl>
+                            <InputLabel className={classes.OnPersonalLeaveLabel}>On Personal Leave: </InputLabel>
+                            <div className="col1">
+                                <Button variant="contained" color={buttonColorPersonalLeave1} className={classes.OnPersonalLeavebuttonNoTravel1}
+                                    onClick={handlePersonalLeaveButton1}>
+                                    Yes
+                        </Button>
+                            </div>
+                            <div className="col2">
+                                <Button variant="contained" color={buttonColorPersonalLeave2} className={classes.OnPersonalLeavebuttonNoTravel2}
+                                    onClick={handlePersonalLeaveButton2}>
+                                    No
+                        </Button>
+                            </div>
+                        </FormControl>
                     </Box>
-
+                </Box>
+                <div className={classes.Button}>
+                    <SubmitButton disable = {disableSubmitButton} onClick={handleSubmit} />
+                </div>
             </form>
         </div>
      );
@@ -520,13 +661,124 @@ const useStyles = makeStyles({
         top: '300px',
     },
 
+
+    PersonalStatusLabel: {
+        position: 'absolute',
+        display: 'flex',
+        width: '200px',
+        flexWrap: 'wrap',
+        height: '20px',
+        left: '300px',
+        right: '1008px',
+        top: '-120px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
+
+    PersonalStatusDropDown: {
+        width: '200px',
+        left: '450px',
+        top: '-110px',
+    },
+
+    OfficeLocationLabel: {
+        position: 'absolute',
+        display: 'flex',
+        flexWrap: 'wrap',
+        width: '200px',
+        height: '20px',
+        left: '300px',
+        right: '1008px',
+        top: '-80px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
+
+    OfficeLocationTextBox: {
+        left: '450px',
+        top: '-80px',
+        minWidth: 200,
+    },
+
+    WorkFromHomeLabel: {
+        position: 'absolute',
+        display: 'flex',
+        width: '200px',
+        flexWrap: 'wrap',
+        height: '20px',
+        left: '280px',
+        right: '1008px',
+        top: '-40px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
+
+    WorkFromHomebuttonNoTravel1: {
+        height: '50px',
+        left: '450px',
+        width: '100px',
+        top: '-40px',
+    },
+    WorkFromHomebuttonNoTravel2: {
+        height: '50px',
+        left: '600px',
+        width: '100px',
+        top: '-89px',
+    },
+
+    OnPersonalLeaveLabel: {
+        position: 'absolute',
+        display: 'flex',
+        width: '200px',
+        flexWrap: 'wrap',
+        height: '20px',
+        left: '280px',
+        right: '1008px',
+        top: '-60px',
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '20px',
+        lineHeight: '20px',
+        textAlign: 'center',
+        color: '#8F8F8F',
+    },
+
+    OnPersonalLeavebuttonNoTravel1: {
+        height: '50px',
+        left: '450px',
+        width: '100px',
+        top: '-60px',
+    },
+    OnPersonalLeavebuttonNoTravel2: {
+        height: '50px',
+        left: '600px',
+        width: '100px',
+        top: '-110px',
+    },
     Button: {
         position: 'absolute',
         left: '700px',
-        top: '1100px',
+        top: '1200px',
     },
-
 });
+
+
 
 
 

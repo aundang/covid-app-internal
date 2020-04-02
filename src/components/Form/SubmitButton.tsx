@@ -6,6 +6,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 export interface SubmitButtonProps {
     onClick: any;
+    disable: boolean;
 }
 
 /*
@@ -27,11 +28,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SubmitButton: React.SFC<SubmitButtonProps> = ({onClick}) => {
+const SubmitButton: React.SFC<SubmitButtonProps> = ({onClick, disable}) => {
     const classes = useStyles();
     return (
         <div>
-            <ColorButton onClick = {onClick} variant="contained" color="primary" className={classes.margin}>
+            <ColorButton 
+            onClick = {onClick} 
+            variant="contained" 
+            color="primary" 
+            className={classes.margin}
+            disabled = {disable}>
                 Submit
             </ColorButton>
         </div>

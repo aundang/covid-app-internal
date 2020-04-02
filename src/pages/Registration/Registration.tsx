@@ -26,6 +26,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
     const [Account, setAccount] = useState<string>("");
     const [Country, setCountry] = useState<string>("");
     const [WorkLocation, setWorkLocation] = useState<string>("");
+    const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(true);
 
     // gets the payload from the text fields 
     const handleSubmit = (e: any) => {
@@ -224,7 +225,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
                 </Box>
 
                 <div className={classes.Button}>
-                    <SubmitButton onClick={handleSubmit} />
+                    <SubmitButton disable = {disableSubmitButton} onClick={handleSubmit} />
                 </div>
 
 
