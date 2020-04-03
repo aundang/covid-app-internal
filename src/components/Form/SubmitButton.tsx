@@ -24,7 +24,11 @@ const ColorButton = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
     margin: {
-        margin: theme.spacing(1),
+        marginTop: 10,
+        marginLeft: 70,
+        marginBottom: 10,
+        width: 200,
+        
     },
 }));
 
@@ -32,14 +36,13 @@ const SubmitButton: React.SFC<SubmitButtonProps> = ({onClick, disable}) => {
     const classes = useStyles();
     return (
         <div>
-            <ColorButton 
+            <Button 
             onClick = {onClick} 
-            variant="contained" 
-            color="primary" 
+            variant="contained"  
             className={classes.margin}
             disabled = {disable}>
                 Submit
-            </ColorButton>
+            </Button>
         </div>
     );
 }

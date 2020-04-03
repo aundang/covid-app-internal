@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@material-ui/core/Box';
-import { FormControl, InputLabel } from '@material-ui/core';
+import { FormControl, Grid, FormGroup, Paper, Typography} from '@material-ui/core';
 import TextBox from '../../components/Form/TextBox';
 import SubmitButton from '../../components/Form/SubmitButton';
 import { makeStyles, StylesContext } from '@material-ui/styles';
@@ -30,6 +29,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   const [OfficeLocation, setOfficeLocation] = useState<string>('');
   const [WorkFromHome, setWorkFromHome] = useState<string>('');
   const [PersonalLeave, setPersonalLeave] = useState<string>('');
+  const [showCountry, setShowCountry] = useState<boolean>(false);
 
 
   // switch cases
@@ -37,7 +37,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
     'Transparent'
   );
   const [buttonColorTravel2, setButtonColorTravel2] = useState<any>(
-    'Transparent'
+    'secondary'
   );
   const [CountryVisibilityTravel, setCountryVisibilityTravel] = useState<
     string
@@ -88,9 +88,10 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
     if (buttonColorTravel1 === 'Transparent') {
       setButtonColorTravel1('secondary');
       setButtonColorTravel2('Transparent');
+      setShowCountry(true);
     }
-    setCountryVisibilityTravel('');
-    setCountryVisibilityNoTravel('hidden');
+
+    setShowCountry(true);
     setCurrentTravelStatus('Travel');
   };
 
@@ -99,8 +100,8 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
       setButtonColorTravel2('secondary');
       setButtonColorTravel1('Transparent');
     }
-    setCountryVisibilityTravel('hidden');
-    setCountryVisibilityNoTravel('');
+
+    setShowCountry(false);
     setCurrentTravelStatus('No Travel');
     setCountry('Singapore');
   };
@@ -153,734 +154,317 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   };
 
   return (
-    <div>
-      <form>
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.EmpIdLabel}>
-              Employee Id:{' '}
-            </InputLabel>
+    <Paper elevation={3} className={classes.paper}>
+      <Grid container direction="column" alignContent='center'>
+        <FormGroup >
+
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Employee Id
+            </Typography>
             <TextBox
-              label="Employee Id"
+              placeholder={"Employee Id"}
               readOnly={true}
-              styles={classes.EmpIdTextBox}
+              styles={''}
               onChange={''}
               textValue={registrationData.employeeId}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.AssociateNameLabel}>
-              Associate Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Associate Name
+            </Typography>
             <TextBox
-              label="Associate Name"
+              placeholder={"Associate Name"}
               readOnly={true}
-              styles={classes.AssociateNameTextBox}
+              styles={''}
               onChange={''}
               textValue={registrationData.firstName + " " + registrationData.lastName}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.MISDepartmentLabel}>
-              MIS Department:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              MIS Department
+            </Typography>
             <TextBox
-              label="Associate Name"
+              placeholder={"MIS Department"}
               readOnly={true}
-              styles={classes.MISDepartmentTextBox}
+              styles={''}
               onChange={''}
               textValue={registrationData.MISDepartment}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.AccountNameLabel}>
-              Account Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Account Name
+            </Typography>
             <TextBox
-              label="Account Name"
+              placeholder={"Account Name"}
               readOnly={true}
-              styles={classes.AccountNameTextBox}
+              styles={''}
               onChange={''}
               textValue={registrationData.accountName}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.ManagerNameLabel}>
-              Manager Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Manager Name
+            </Typography>
             <TextBox
-              label="Manager Name"
+              placeholder={"Manager Name"}
               readOnly={true}
-              styles={classes.ManagerNameTextBox}
+              styles={''}
               onChange={''}
               textValue={registrationData.managerFirstName + " " + registrationData.managerLastName}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.RoleLabel}>Role: </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Role
+            </Typography>
             <TextBox
-              label="Role"
+              placeholder={"Role"}
               readOnly={true}
-              styles={classes.RoleTextBox}
+              styles={''}
               onChange={''}
               textValue={registrationData.role}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.TravelStatusLabel}>
-              Current Travel Status:{' '}
-            </InputLabel>
-            <div className="col1">
-              <Button
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Current Travel Status
+            </Typography>
+            <Grid
+              justify="space-between" // Add it here :)
+              container
+             
+            >
+               <Button
                 variant="contained"
                 color={buttonColorTravel1}
-                className={classes.TravelStatusbutton1}
+                className={classes.button}
                 onClick={handleTravelButton1}
               >
                 Travel
               </Button>
-            </div>
-            <div className="col2">
               <Button
                 variant="contained"
                 color={buttonColorTravel2}
-                className={classes.TravelStatusbutton2}
+                className={classes.button}
                 onClick={handleTravelButton2}
               >
                 No Travel
               </Button>
-            </div>
+              </Grid>
           </FormControl>
-        </Box>
 
-        <Box id="travel" visibility={CountryVisibilityTravel}>
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.CountryLabel}>Country:</InputLabel>
+        {showCountry ? (
+          <FormGroup>
+            <FormControl className={classes.inputFields}>
+              <Typography variant="h6">
+                Country
+            </Typography>
               <DropDown
                 label="Country"
                 onChange={handleCountry}
-                styles={classes.CountryDropDown}
+                styles={''}
               />
             </FormControl>
-          </Box>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.PersonalStatusCountryLabel}>
-                Personal Status:
-              </InputLabel>
+            <FormControl className={classes.inputFields}>
+              <Typography variant="h6">
+                Personal Status
+            </Typography>
               <DropDown
                 label="Personal Status"
-                onChange={handlePersonalStatus}
-                styles={classes.PersonalStatusCountryDropDown}
+                onChange={handleCountry}
+                styles={''}
               />
             </FormControl>
-          </Box>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.OfficeLocationCountryLabel}>
-                Office Location:
-              </InputLabel>
+              <FormControl className={classes.inputFields}>
+                <Typography variant="h6">
+                  Office Location
+            </Typography>
               <TextBox
-                label="Office Location"
+                placeholder={"Office Location"}
                 readOnly={false}
-                styles={classes.OfficeLocationCountryTextBox}
+                styles={''}
                 onChange={handleOfficeLocation}
                 textValue={registrationData.workLocation}
               />
-            </FormControl>
-          </Box>
+              </FormControl>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.WorkFromHomeCountryLabel}>
-                Work From Home:{' '}
-              </InputLabel>
-              <div className="col1">
+              <FormControl className={classes.inputFields}>
+                <Typography variant="h6">
+                  Current Travel Status
+            </Typography>
+                <Grid
+                  justify="space-between" // Add it here :)
+                  container
+                >
+    
                 <Button
                   variant="contained"
                   color={buttonColorWorkFromHome1}
-                  className={classes.WorkFromHomebutton1}
+                  className={classes.button}
                   onClick={handleWorkFromHomeButton1}
                 >
                   Yes
                 </Button>
-              </div>
-              <div className="col2">
                 <Button
                   variant="contained"
                   color={buttonColorWorkFromHome2}
-                  className={classes.WorkFromHomebutton2}
+                  className={classes.button}
                   onClick={handleWorkFromHomeButton2}
                 >
                   No
                 </Button>
-              </div>
-            </FormControl>
-          </Box>
+    
+                </Grid>
+              </FormControl>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.OnPersonalLeaveCountryLabel}>
-                On Personal Leave:{' '}
-              </InputLabel>
-              <div className="col1">
-                <Button
+              <FormControl className={classes.inputFields}>
+                <Typography variant="h6">
+                  Current Travel Status
+            </Typography>
+                <Grid
+                  justify="space-between" // Add it here :)
+                  container
+                >
+
+              <Button
                   variant="contained"
                   color={buttonColorPersonalLeave1}
-                  className={classes.OnPersonalLeavebutton1}
+                  className={classes.button}
                   onClick={handlePersonalLeaveButton1}
                 >
                   Yes
                 </Button>
-              </div>
-              <div className="col2">
                 <Button
                   variant="contained"
                   color={buttonColorPersonalLeave2}
-                  className={classes.OnPersonalLeavebutton2}
+                  className={classes.button}
                   onClick={handlePersonalLeaveButton2}
                 >
                   No
                 </Button>
-              </div>
-            </FormControl>
-          </Box>
-        </Box>
 
-        <Box id="noTravel" visibility={CountryVisibilityNoTravel}>
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.PersonalStatusLabel}>
-                PersonalStatus:
-              </InputLabel>
-              <DropDown
-                label="Personal Status"
-                onChange={handlePersonalStatus}
-                styles={classes.PersonalStatusDropDown}
-              />
-            </FormControl>
-          </Box>
+                </Grid>
+              </FormControl>
+            </FormGroup>
+          ) : (<FormGroup>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Personal Status
+            </Typography>
+            <DropDown
+              label="Personal Status"
+              onChange={handleCountry}
+              styles={''}
+            />
+          </FormControl>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.OfficeLocationLabel}>
-                Office Location:
-              </InputLabel>
+            <FormControl className={classes.inputFields}>
+              <Typography variant="h6">
+                Office Location
+            </Typography>
               <TextBox
-                label="Office Location"
+                placeholder={"Office Location"}
                 readOnly={false}
-                styles={classes.OfficeLocationTextBox}
+                styles={''}
                 onChange={handleOfficeLocation}
                 textValue={registrationData.workLocation}
               />
             </FormControl>
-          </Box>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.WorkFromHomeLabel}>
-                Work From Home:{' '}
-              </InputLabel>
-              <div className="col1">
+            <FormControl className={classes.inputFields}>
+              <Typography variant="h6">
+                Current Travel Status
+            </Typography>
+              <Grid
+                justify="space-between" // Add it here :)
+                container
+              >
+
                 <Button
                   variant="contained"
                   color={buttonColorWorkFromHome1}
-                  className={classes.WorkFromHomebuttonNoTravel1}
+                  className={classes.button}
                   onClick={handleWorkFromHomeButton1}
                 >
                   Yes
                 </Button>
-              </div>
-              <div className="col2">
                 <Button
                   variant="contained"
                   color={buttonColorWorkFromHome2}
-                  className={classes.WorkFromHomebuttonNoTravel2}
+                  className={classes.button}
                   onClick={handleWorkFromHomeButton2}
                 >
                   No
                 </Button>
-              </div>
-            </FormControl>
-          </Box>
 
-          <Box display="flex" justifyContent="flex-start">
-            <FormControl>
-              <InputLabel className={classes.OnPersonalLeaveLabel}>
-                On Personal Leave:{' '}
-              </InputLabel>
-              <div className="col1">
+              </Grid>
+            </FormControl>
+
+            <FormControl className={classes.inputFields}>
+              <Typography variant="h6">
+                On Personal Leave
+            </Typography>
+              <Grid
+                justify="space-between" // Add it here :)
+                container
+              >
+
                 <Button
                   variant="contained"
                   color={buttonColorPersonalLeave1}
-                  className={classes.OnPersonalLeavebuttonNoTravel1}
+                  className={classes.button}
                   onClick={handlePersonalLeaveButton1}
                 >
                   Yes
                 </Button>
-              </div>
-              <div className="col2">
                 <Button
                   variant="contained"
                   color={buttonColorPersonalLeave2}
-                  className={classes.OnPersonalLeavebuttonNoTravel2}
+                  className={classes.button}
                   onClick={handlePersonalLeaveButton2}
                 >
                   No
                 </Button>
-              </div>
+              </Grid>
             </FormControl>
-          </Box>
-        </Box>
-        <div className={classes.Button}>
+            </FormGroup>)}
+
           <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
-        </div>
-      </form>
-      <div className={classes.table}>
-        <DailyUpdatesTable />
-      </div>
-    </div>
+          </FormGroup>
+          </Grid>
+      <DailyUpdatesTable />
+          </Paper>
+
   );
 };
 
 const useStyles = makeStyles({
-  EmpIdLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '310px',
-    right: '1008px',
-    top: '20px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-  EmpIdTextBox: {
-    left: '450px',
-    top: '20px'
-  },
-  AssociateNameLabel: {
-    position: 'absolute',
-    width: '200px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '60px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
+  paper: {
+    margin: '20px',
   },
 
-  AssociateNameTextBox: {
-    //position: 'relative',
-    left: '450px',
-    top: '60px'
-  },
-  MISDepartmentLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '100px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
+  inputFields: {
+    marginBottom: 15,
+    marginTop: 15,
+    width: '400px',
   },
 
-  MISDepartmentTextBox: {
-    left: '450px',
-    top: '100px'
+  button: {
+    width: 200
   },
-
-  AccountNameLabel: {
-    position: 'absolute',
-    width: '200px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '140px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  AccountNameTextBox: {
-    left: '450px',
-    top: '140px'
-  },
-
-  ManagerNameLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '180px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  ManagerNameTextBox: {
-    left: '450px',
-    top: '180px'
-  },
-
-  RoleLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '370px',
-    right: '1008px',
-    top: '210px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  RoleTextBox: {
-    left: '450px',
-    top: '210px'
-  },
-
-  TravelStatusLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '250px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  TravelStatusbutton1: {
-    height: '50px',
-    left: '450px',
-    width: '100px',
-    top: '260px'
-  },
-  TravelStatusbutton2: {
-    height: '50px',
-    left: '600px',
-    width: '110px',
-    top: '211px'
-  },
-
-  CountryLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '350px',
-    right: '1008px',
-    top: '260px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  CountryDropDown: {
-    width: '200px',
-    left: '450px',
-    top: '260px'
-  },
-
-  PersonalStatusCountryLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '300px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  PersonalStatusCountryDropDown: {
-    width: '200px',
-    left: '450px',
-    top: '300px'
-  },
-
-  OfficeLocationCountryLabel: {
-    position: 'absolute',
-    display: 'flex',
-    flexWrap: 'wrap',
-    width: '200px',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '340px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  OfficeLocationCountryTextBox: {
-    left: '450px',
-    top: '340px',
-    minWidth: 200
-  },
-
-  WorkFromHomeCountryLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '280px',
-    right: '1008px',
-    top: '360px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  WorkFromHomebutton1: {
-    height: '50px',
-    left: '450px',
-    width: '100px',
-    top: '360px'
-  },
-  WorkFromHomebutton2: {
-    height: '50px',
-    left: '600px',
-    width: '100px',
-    top: '310px'
-  },
-
-  OnPersonalLeaveCountryLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '280px',
-    right: '1008px',
-    top: '350px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  OnPersonalLeavebutton1: {
-    height: '50px',
-    left: '450px',
-    width: '100px',
-    top: '350px'
-  },
-  OnPersonalLeavebutton2: {
-    height: '50px',
-    left: '600px',
-    width: '100px',
-    top: '300px'
-  },
-
-  PersonalStatusLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '-120px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  PersonalStatusDropDown: {
-    width: '200px',
-    left: '450px',
-    top: '-110px'
-  },
-
-  OfficeLocationLabel: {
-    position: 'absolute',
-    display: 'flex',
-    flexWrap: 'wrap',
-    width: '200px',
-    height: '20px',
-    left: '300px',
-    right: '1008px',
-    top: '-80px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  OfficeLocationTextBox: {
-    left: '450px',
-    top: '-80px',
-    minWidth: 200
-  },
-
-  WorkFromHomeLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '280px',
-    right: '1008px',
-    top: '-40px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  WorkFromHomebuttonNoTravel1: {
-    height: '50px',
-    left: '450px',
-    width: '100px',
-    top: '-40px'
-  },
-  WorkFromHomebuttonNoTravel2: {
-    height: '50px',
-    left: '600px',
-    width: '100px',
-    top: '-89px'
-  },
-
-  OnPersonalLeaveLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '280px',
-    right: '1008px',
-    top: '-60px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  OnPersonalLeavebuttonNoTravel1: {
-    height: '50px',
-    left: '450px',
-    width: '100px',
-    top: '-60px'
-  },
-  OnPersonalLeavebuttonNoTravel2: {
-    height: '50px',
-    left: '600px',
-    width: '100px',
-    top: '-110px'
-  },
-  Button: {
-    position: 'absolute',
-    left: '700px',
-    top: '1350px'
-  },
-
   table: {
     position: 'absolute',
     left: '400px',

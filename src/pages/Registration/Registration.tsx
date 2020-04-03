@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl, InputLabel } from '@material-ui/core';
+import React, { useState} from 'react';
+import { FormControl, Grid, FormGroup, Paper, Typography  } from '@material-ui/core';
 import TextBox from '../../components/Form/TextBox';
 import SubmitButton from '../../components/Form/SubmitButton';
-import { makeStyles, StylesContext } from '@material-ui/styles';
-import Box from '@material-ui/core/Box';
+import { makeStyles} from '@material-ui/styles';
 import DropDown from '../../components/Form/DropDown';
 import { useActions } from '../../actions/';
 import * as RegistrationActions from '../../actions/RegistrationForm';
 import { history } from '../../configureStore';
+
 
 export interface RegistrationProps {}
 
@@ -25,15 +25,12 @@ export const Registration: React.SFC<RegistrationProps> = () => {
   const [Account, setAccount] = useState<string>('');
   const [Country, setCountry] = useState<string>('');
   const [WorkLocation, setWorkLocation] = useState<string>('');
-  const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(
-    false
-  );
+  const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(false);
 
   const registrationActions = useActions(RegistrationActions);
 
   // gets the payload from the text fields
   const handleSubmit = (e: any) => {
-  
     console.log('Submitting');
     registrationActions.submitData({
       employeeId: EmployeeId,
@@ -58,6 +55,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
 
   const handleFirstName = (value: string) => {
     setFirstName(value);
+    console.log(value);
   };
 
   const handleLastName = (value: string) => {
@@ -97,429 +95,165 @@ export const Registration: React.SFC<RegistrationProps> = () => {
   };
 
   return (
-    <div>
-      <form>
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.EmpIdLabel}>
-              Employee Id:{' '}
-            </InputLabel>
+    <Paper elevation={3} className={classes.paper}>
+    <Grid container direction = "column" alignContent = 'center'>
+      <FormGroup >
+
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Employee Id
+            </Typography>
             <TextBox
-              label="Employee Id"
+              placeholder={"Employee Id"}
               readOnly={false}
-              styles={classes.EmpIdTextBox}
+              styles={""}
               onChange={handleEmployeeId}
               textValue=""
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.FirstNameLabel}>
-              First Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              First Name
+            </Typography>
             <TextBox
-              label="First Name"
+              placeholder={"First Name"}
               readOnly={false}
-              styles={classes.FirstNameTextBox}
+              styles={""}
               onChange={handleFirstName}
               textValue=""
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.LastNameLabel}>
-              Last Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Last Name
+            </Typography>
             <TextBox
-              label="Last Name"
+              placeholder={"Last Name"}
               readOnly={false}
-              styles={classes.LastNameTextBox}
+              styles={""}
               onChange={handleLastName}
               textValue=""
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.ManagerFirstNameLabel}>
-              Manager's First Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+             Manager's First Name
+            </Typography>
             <TextBox
-              label="Manager's First Name"
+              placeholder={"Manager's First Name"}
               readOnly={false}
-              styles={classes.ManagerFirstNameTextBox}
+              styles={""}
               onChange={handleManagerFirstName}
               textValue=""
             />
-          </FormControl>
-        </Box>
+          </FormControl>  
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.ManagerLastNameLabel}>
-              Manager's Last Name:{' '}
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Manager's Last Name
+            </Typography>
             <TextBox
-              label="Manager's Last Name"
+              placeholder={"Manager's Last Name"}
               readOnly={false}
-              styles={classes.ManagerLastNameTextBox}
+              styles={""}
               onChange={handleManagerLastName}
               textValue=""
             />
-          </FormControl>
-        </Box>
+          </FormControl>  
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.ManagerEmployeeIdLabel}>
-              Manager's Employee Id:
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Manager's Employee Id
+            </Typography>
             <TextBox
-              label="Manager's Employee Id"
+              placeholder={"Manager's Employee Id"}
               readOnly={false}
-              styles={classes.ManagerEmployeeIdTextBox}
+              styles={""}
               onChange={handleManagerEmpId}
               textValue=""
             />
-          </FormControl>
-        </Box>
-
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.RoleLabel}>Role:</InputLabel>
+          </FormControl>  
+          
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Role
+            </Typography>
             <TextBox
-              label="Role"
+              placeholder={"Role"}
               readOnly={false}
-              styles={classes.RoleTextBox}
+              styles={""}
               onChange={handleRole}
               textValue=""
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.MISDepartmentLabel}>
-              MIS Department:
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              MIS Department
+            </Typography>
             <TextBox
-              label="MIS Department"
+              placeholder={"MIS Department"}
               readOnly={false}
-              styles={classes.MISTextBox}
+              styles={""}
               onChange={handleMISDepartment}
               textValue=""
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.AccountNameLabel}>
-              Account Name:
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Account Name
+            </Typography>
             <TextBox
-              label="Account Name"
+              placeholder={"handleAccountName"}
               readOnly={false}
-              styles={classes.AccountNameTextBox}
+              styles={""}
               onChange={handleAccountName}
               textValue=""
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.CountryLabel}>Country:</InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Country
+            </Typography>
             <DropDown
               label="Country"
               onChange={handleCountry}
-              styles={classes.CountryDropDown}
+              styles={""}
             />
           </FormControl>
-        </Box>
 
-        <Box display="flex" justifyContent="flex-start">
-          <FormControl>
-            <InputLabel className={classes.WorkLocationLabel}>
-              Work Location:
-            </InputLabel>
+          <FormControl className={classes.inputFields}>
+            <Typography variant="h6">
+              Work Location
+            </Typography>
             <TextBox
-              label="Work Location"
+              placeholder={"Work Location"}
               readOnly={false}
-              styles={classes.WorkLocationTextBox}
+              styles={""}
               onChange={handleWorkLocation}
               textValue=""
             />
           </FormControl>
-        </Box>
-
-        <div className={classes.Button}>
-          <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
-        </div>
-      </form>
-    </div>
+            <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
+      </FormGroup >
+    </Grid>
+     </Paper >
   );
 };
 
 const useStyles = makeStyles({
-  EmpIdLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '310px',
-    right: '1008px',
-    top: '20px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-  EmpIdTextBox: {
-    left: '450px',
-    top: '20px'
-  },
-  FirstNameLabel: {
-    position: 'absolute',
-    width: '200px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '310px',
-    right: '1008px',
-    top: '60px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
+  paper: {
+    margin: '20px',
   },
 
-  FirstNameTextBox: {
-    //position: 'relative',
-    left: '450px',
-    top: '60px'
+  inputFields: {
+    marginBottom: 15,
+    marginTop: 15,
+    width: '400px',
   },
-  LastNameLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '310px',
-    right: '1008px',
-    top: '100px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  LastNameTextBox: {
-    left: '450px',
-    top: '100px'
-  },
-
-  ManagerFirstNameLabel: {
-    position: 'absolute',
-    width: '200px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '140px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  ManagerFirstNameTextBox: {
-    left: '450px',
-    top: '140px'
-  },
-
-  ManagerLastNameLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '180px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  ManagerLastNameTextBox: {
-    left: '450px',
-    top: '180px'
-  },
-
-  ManagerEmployeeIdLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '210px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  ManagerEmployeeIdTextBox: {
-    left: '450px',
-    top: '210px'
-  },
-
-  RoleLabel: {
-    position: 'absolute',
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '310px',
-    right: '1008px',
-    top: '250px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  RoleTextBox: {
-    left: '450px',
-    top: '250px'
-  },
-
-  MISDepartmentLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '290px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  MISTextBox: {
-    left: '450px',
-    top: '290px'
-  },
-
-  AccountNameLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '330px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  AccountNameTextBox: {
-    left: '450px',
-    top: '330px'
-  },
-
-  CountryLabel: {
-    position: 'absolute',
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '310px',
-    right: '1008px',
-    top: '370px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  CountryDropDown: {
-    left: '450px',
-    top: '370px',
-    minWidth: 200
-  },
-
-  WorkLocationLabel: {
-    position: 'absolute',
-    display: 'flex',
-    width: '200px',
-    flexWrap: 'wrap',
-    height: '20px',
-    left: '240px',
-    right: '1008px',
-    top: '410px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '20px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    color: '#8F8F8F'
-  },
-
-  WorkLocationTextBox: {
-    left: '450px',
-    top: '410px'
-  },
-
-  Button: {
-    position: 'absolute',
-    left: '700px',
-    top: '1300px'
-  }
 });
