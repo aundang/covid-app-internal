@@ -165,87 +165,45 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
         <Typography align = 'center'>DailyUpdate's Screen</Typography>
           <Paper elevation={3} className={classes.paper}>
         <Grid
-          justify="space-between" // Add it here :)
+          justify="space-between"
           container
 
         >
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
-              Employee Id
+              Employee Id: {registrationData.employeeId}
             </Typography>
-            <TextBox
-              placeholder={"Employee Id"}
-              readOnly={true}
-              styles={''}
-              onChange={''}
-              textValue={registrationData.employeeId}
-            />
           </FormControl>
           
 
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
-              Associate Name
+              Associate Name: {registrationData.firstName + " " + registrationData.lastName}
             </Typography>
-            <TextBox
-              placeholder={"Associate Name"}
-              readOnly={true}
-              styles={''}
-              onChange={''}
-              textValue={registrationData.firstName + " " + registrationData.lastName}
-            />
           </FormControl>
 
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
-              MIS Department
+              MIS Department: {registrationData.MISDepartment}
             </Typography>
-            <TextBox
-              placeholder={"MIS Department"}
-              readOnly={true}
-              styles={''}
-              onChange={''}
-              textValue={registrationData.MISDepartment}
-            />
           </FormControl>
 
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
-              Account Name
+              Account Name: {registrationData.accountName}
             </Typography>
-            <TextBox
-              placeholder={"Account Name"}
-              readOnly={true}
-              styles={''}
-              onChange={''}
-              textValue={registrationData.accountName}
-            />
           </FormControl>
 
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
-              Manager Name
+              Manager Name: {registrationData.managerFirstName + " " + registrationData.managerLastName}
             </Typography>
-            <TextBox
-              placeholder={"Manager Name"}
-              readOnly={true}
-              styles={''}
-              onChange={''}
-              textValue={registrationData.managerFirstName + " " + registrationData.managerLastName}
-            />
           </FormControl>
 
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
-              Role
+              Role: {registrationData.role}
             </Typography>
-            <TextBox
-              placeholder={"Role"}
-              readOnly={true}
-              styles={''}
-              onChange={''}
-              textValue={registrationData.role}
-            />
           </FormControl>
           </Grid>
           </Paper>
@@ -253,8 +211,12 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
    
       <Paper elevation={3} className={classes.paper}>
-        <Grid container direction="column" alignContent='center'>
-          <FormGroup >
+        <Grid
+          justify="space-between" // Add it here :)
+          container
+
+        >
+        
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
               Current Travel Status
@@ -284,7 +246,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
           </FormControl>
 
         {showCountry ? (
-          <FormGroup>
+        <>
             <FormControl className={classes.inputFields}>
               <Typography variant="h6">
                 Country
@@ -379,8 +341,9 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
                 </Grid>
               </FormControl>
-            </FormGroup>
-          ) : (<FormGroup>
+              </>
+          ) : (
+            <>
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
               Personal Status
@@ -462,10 +425,12 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                 </Button>
               </Grid>
             </FormControl>
-            </FormGroup>)}
-          <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
-          </FormGroup>
+            </>)}
+          
           </Grid>
+          <Grid container alignContent = 'center' direction = 'column'>
+        <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
+        </Grid>
           </Paper>
       
        
@@ -483,8 +448,7 @@ const useStyles = makeStyles({
   },
 
   inputFields: {
-    marginBottom: 20,
-    marginTop: 20,
+    margin: 20,
     width: '400px',
   },
 
