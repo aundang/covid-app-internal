@@ -161,13 +161,14 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
   return (
     <>
-    <Paper elevation={3} className={classes.paper}>
+  
         <Typography align = 'center'>DailyUpdate's Screen</Typography>
-   
+          <Paper elevation={3} className={classes.paper}>
+        <Grid
+          justify="space-between" // Add it here :)
+          container
 
-      <Grid container direction="column" alignContent='center'>
-        <FormGroup >
-
+        >
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
               Employee Id
@@ -180,6 +181,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               textValue={registrationData.employeeId}
             />
           </FormControl>
+          
 
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
@@ -245,7 +247,14 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               textValue={registrationData.role}
             />
           </FormControl>
+          </Grid>
+          </Paper>
+       
 
+   
+      <Paper elevation={3} className={classes.paper}>
+        <Grid container direction="column" alignContent='center'>
+          <FormGroup >
           <FormControl className={classes.inputFields}>
             <Typography variant="h6">
               Current Travel Status
@@ -315,7 +324,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
               <FormControl className={classes.inputFields}>
                 <Typography variant="h6">
-                  Current Travel Status
+                  Work From Home
             </Typography>
                 <Grid
                   justify="space-between" // Add it here :)
@@ -399,7 +408,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
             <FormControl className={classes.inputFields}>
               <Typography variant="h6">
-                Current Travel Status
+                Work From Home
             </Typography>
               <Grid
                 justify="space-between" // Add it here :)
@@ -454,11 +463,13 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               </Grid>
             </FormControl>
             </FormGroup>)}
-
           <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
           </FormGroup>
           </Grid>
           </Paper>
+      
+       
+  
     <Paper elevation={3} className={classes.paper}>
     <DailyUpdatesTable />
     </Paper>
@@ -472,8 +483,8 @@ const useStyles = makeStyles({
   },
 
   inputFields: {
-    marginBottom: 15,
-    marginTop: 15,
+    marginBottom: 20,
+    marginTop: 20,
     width: '400px',
   },
 

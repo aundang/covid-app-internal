@@ -23,7 +23,6 @@ function Routes() {
     <div className={classes.content}>
       <Route exact={true} path="/" component={HomePage} />
       <Route exact={true} path="/home" component={HomePage} />
-      <Route exact={true} path="/tracker" component={Employee} />
       <Route exact={true} path="/manager" component={Manager}/>
       <Route exact={true} path="/registration" component={Registration}/>
       <Route exact={true} path="/dailyupdates" component={DailyUpdates} />
@@ -46,14 +45,6 @@ function Drawer(props: { employeeList: IEmployee[] }) {
         </ListItem>
       </List>
       <Divider />
-      <List>
-        <ListItem button onClick={() => history.push('/tracker')}>
-          <ListItemIcon>
-            <EmployeeIconCount employeeList={props.employeeList} />
-          </ListItemIcon>
-          <ListItemText primary="Daily Tracker Entry" />
-        </ListItem>
-      </List>
       <List>
         <ListItem button onClick={() => history.push('/manager')}>
           <ListItemIcon>
