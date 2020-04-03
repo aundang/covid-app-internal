@@ -213,7 +213,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
               Account Name
             </Typography>
             <TextBox
-              placeholder={"handleAccountName"}
+              placeholder={"Account Name"}
               readOnly={false}
               styles={""}
               onChange={handleAccountName}
