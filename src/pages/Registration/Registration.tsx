@@ -26,6 +26,9 @@ export const Registration: React.SFC<RegistrationProps> = () => {
   const [Country, setCountry] = useState<string>('');
   const [WorkLocation, setWorkLocation] = useState<string>('');
   const [disableSubmitButton, setDisableSubmitButton] = useState<boolean>(false);
+  const [countryArray, setCountryArray] = useState<string[]>([
+    'Singapore', 'Malaysia', 'Thailand', 'Indonesia'
+  ]);
 
   const registrationActions = useActions(RegistrationActions);
 
@@ -96,6 +99,8 @@ export const Registration: React.SFC<RegistrationProps> = () => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
+      <Typography align='center'>Registration Screen</Typography>
+
     <Grid container direction = "column" alignContent = 'center'>
       <FormGroup >
 
@@ -221,6 +226,7 @@ export const Registration: React.SFC<RegistrationProps> = () => {
               Country
             </Typography>
             <DropDown
+              values = {countryArray}
               label="Country"
               onChange={handleCountry}
               styles={""}

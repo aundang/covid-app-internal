@@ -26,10 +26,16 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   const [currentTravelStatus, setCurrentTravelStatus] = useState<string>('');
   const [Country, setCountry] = useState<string>('Singapore');
   const [PersonalStatus, setPersonalStatus] = useState<string>('');
-  const [OfficeLocation, setOfficeLocation] = useState<string>('');
+  const [OfficeLocation, setOfficeLocation] = useState<string>(registrationData.workLocation ? registrationData.workLocation : '');
   const [WorkFromHome, setWorkFromHome] = useState<string>('');
   const [PersonalLeave, setPersonalLeave] = useState<string>('');
   const [showCountry, setShowCountry] = useState<boolean>(false);
+  const[personalStatusArray, setPersonalStatusArray] = useState<string[]>([
+    'No Status', 'Confirmed Case', 'Suspected Case', 'SHN', 'LOA', 'Extra Precautionary Measure'
+  ]);
+  const [countryArray, setCountryArray] = useState<string[]>([
+    'Singapore', 'Malaysia', 'Thailand', 'Indonesia'
+  ]);
 
 
   // switch cases
@@ -74,7 +80,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
       currentTravelStatus: currentTravelStatus,
       country: Country,
       personalStatus: PersonalStatus,
-      officeLocation: registrationData.workLocation,
+      officeLocation: OfficeLocation,
       workFromHome: WorkFromHome,
       onPersonalLeave: PersonalLeave
     };
@@ -154,7 +160,11 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
   };
 
   return (
+    <>
     <Paper elevation={3} className={classes.paper}>
+        <Typography align = 'center'>DailyUpdate's Screen</Typography>
+   
+
       <Grid container direction="column" alignContent='center'>
         <FormGroup >
 
@@ -270,11 +280,12 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               <Typography variant="h6">
                 Country
             </Typography>
-              <DropDown
-                label="Country"
-                onChange={handleCountry}
-                styles={''}
-              />
+                  <DropDown
+                    values={countryArray}
+                    label="Country"
+                    onChange={handleCountry}
+                    styles={''}
+                  />
             </FormControl>
 
             <FormControl className={classes.inputFields}>
@@ -282,8 +293,9 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
                 Personal Status
             </Typography>
               <DropDown
+                values = {personalStatusArray}
                 label="Personal Status"
-                onChange={handleCountry}
+                onChange={handlePersonalStatus}
                 styles={''}
               />
             </FormControl>
@@ -332,7 +344,7 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
 
               <FormControl className={classes.inputFields}>
                 <Typography variant="h6">
-                  Current Travel Status
+                  On Personal Leave
             </Typography>
                 <Grid
                   justify="space-between" // Add it here :)
@@ -365,8 +377,9 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
               Personal Status
             </Typography>
             <DropDown
+              values = {personalStatusArray}
               label="Personal Status"
-              onChange={handleCountry}
+              onChange={handlePersonalStatus}
               styles={''}
             />
           </FormControl>
@@ -445,9 +458,11 @@ export const DailyUpdates: React.SFC<DailyUpdatesProps> = () => {
           <SubmitButton disable={disableSubmitButton} onClick={handleSubmit} />
           </FormGroup>
           </Grid>
-      <DailyUpdatesTable />
           </Paper>
-
+    <Paper elevation={3} className={classes.paper}>
+    <DailyUpdatesTable />
+    </Paper>
+</>
   );
 };
 
